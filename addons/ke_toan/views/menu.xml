@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ============ MENU RIÊNG KẾ TOÁN ============ -->
+        <menuitem
+            id="menu_ke_toan_root"
+            name="Kế toán"
+            sequence="30"/>
+
+        <menuitem
+            id="menu_tai_khoan_ke_toan"
+            name="Tài khoản kế toán"
+            parent="menu_ke_toan_root"
+            sequence="1"
+            action="action_tai_khoan_ke_toan"/>
+
+        <menuitem
+            id="menu_so_cai"
+            name="Sổ cái"
+            parent="menu_ke_toan_root"
+            sequence="2"
+            action="action_so_cai"/>
+
+        <!-- ============ TÍCH HỢP VÀO MENU NHÂN SỰ ============ -->
+        <menuitem
+            id="menu_ke_toan_nhan_su"
+            name="Kế toán"
+            parent="nhan_su.menu_root"
+            sequence="21"/>
+
+        <menuitem
+            id="menu_so_cai_nhan_su"
+            name="Sổ cái"
+            parent="menu_ke_toan_nhan_su"
+            sequence="1"
+            action="action_so_cai"/>
+
+        <menuitem
+            id="menu_tai_khoan_ke_toan_nhan_su"
+            name="Tài khoản kế toán"
+            parent="menu_ke_toan_nhan_su"
+            sequence="2"
+            action="action_tai_khoan_ke_toan"/>
+        
+    </data>
+</odoo>

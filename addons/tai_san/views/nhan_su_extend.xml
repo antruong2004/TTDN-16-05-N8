@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Extend Nhân viên form - thêm smart button và tab Tài sản quản lý -->
+        <record id="view_nhan_vien_form_tai_san" model="ir.ui.view">
+            <field name="name">nhan_vien.form.tai_san</field>
+            <field name="model">nhan_vien</field>
+            <field name="inherit_id" ref="nhan_su.view_nhan_vien_form"/>
+            <field name="arch" type="xml">
+                <!-- Smart button tài sản -->
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(tai_san.action_tai_san)d" type="action" 
+                            class="oe_stat_button" icon="fa-building"
+                            context="{'search_default_nguoi_quan_ly_id': active_id}">
+                        <field name="so_luong_tai_san_quan_ly" widget="statinfo" string="Tài sản"/>
+                    </button>
+                </xpath>
+                <!-- Tab tài sản - thêm vào cuối notebook -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="Tài sản quản lý">
+                        <field name="tai_san_quan_ly_ids">
+                            <tree>
+                                <field name="ma_tai_san"/>
+                                <field name="ten_tai_san"/>
+                                <field name="loai_tai_san_id"/>
+                                <field name="nguyen_gia"/>
+                                <field name="gia_tri_con_lai"/>
+                                <field name="trang_thai"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Extend Phòng ban form - thêm smart button và tab Tài sản -->
+        <record id="view_phong_ban_form_tai_san" model="ir.ui.view">
+            <field name="name">phong_ban.form.tai_san</field>
+            <field name="model">phong_ban</field>
+            <field name="inherit_id" ref="nhan_su.view_phong_ban_form"/>
+            <field name="arch" type="xml">
+                <!-- Smart button tài sản -->
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(tai_san.action_tai_san)d" type="action" 
+                            class="oe_stat_button" icon="fa-building"
+                            context="{'search_default_phong_ban_id': active_id}">
+                        <field name="so_luong_tai_san" widget="statinfo" string="Tài sản"/>
+                    </button>
+                </xpath>
+                <!-- Thêm thông tin tổng giá trị -->
+                <xpath expr="//field[@name='so_luong_nhan_vien']" position="after">
+                    <field name="tong_gia_tri_tai_san"/>
+                </xpath>
+                <!-- Tab tài sản - thêm vào cuối notebook -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="Tài sản">
+                        <field name="tai_san_ids">
+                            <tree>
+                                <field name="ma_tai_san"/>
+                                <field name="ten_tai_san"/>
+                                <field name="loai_tai_san_id"/>
+                                <field name="nguyen_gia"/>
+                                <field name="gia_tri_con_lai"/>
+                                <field name="nguoi_quan_ly_id"/>
+                                <field name="trang_thai"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,16 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+
         <menuitem
             id="menu_root"
             name="QLNS"
             sequence="0"/>
-          
-        <menuitem name="Quản lý nhân viên" 
-            id="menu_nhan_vien" 
-            parent="menu_root" 
+
+        <menuitem
+            id="menu_nhan_vien"
+            name="Quản lý nhân viên"
+            parent="menu_root"
             sequence="1"
-            action="action_nhan_vien"
-        />
+            action="action_nhan_vien"/>
+
+        <menuitem
+            id="menu_phong_ban"
+            name="Quản lý phòng ban"
+            parent="menu_root"
+            sequence="2"
+            action="action_phong_ban"/>
+
+        <menuitem
+            id="menu_chuc_vu"
+            name="Quản lý chức vụ"
+            parent="menu_root"
+            sequence="3"
+            action="action_chuc_vu"/>
+
+        <menuitem
+            id="menu_lich_su_cong_tac"
+            name="Lịch sử công tác"
+            parent="menu_root"
+            sequence="4"
+            action="action_lich_su_cong_tac"/>
+
+        <menuitem
+            id="menu_chung_chi"
+            name="Quản lý chứng chỉ"
+            parent="menu_root"
+            sequence="5"
+            action="action_chung_chi"/>
+
+        <menuitem
+            id="menu_cham_cong"
+            name="Quản lý chấm công"
+            parent="menu_root"
+            sequence="6"
+            action="action_cham_cong"/>
+
+        <menuitem
+            id="menu_bang_luong"
+            name="Bảng lương"
+            parent="menu_root"
+            sequence="7"
+            action="action_bang_luong"/>
+
     </data>
 </odoo>

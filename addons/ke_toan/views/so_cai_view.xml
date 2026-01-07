@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Tree View -->
+        <record id="view_so_cai_tree" model="ir.ui.view">
+            <field name="name">so.cai.tree</field>
+            <field name="model">so_cai</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="trang_thai=='nhap'" 
+                      decoration-success="trang_thai=='da_ghi_so'" 
+                      decoration-muted="trang_thai=='da_khoa_so'">
+                    <field name="ngay_ghi_so"/>
+                    <field name="ma_chung_tu"/>
+                    <field name="dien_giai"/>
+                    <field name="tai_khoan_no_id"/>
+                    <field name="tai_khoan_co_id"/>
+                    <field name="so_tien"/>
+                    <field name="nguoi_lap_id"/>
+                    <field name="nguoi_duyet_id"/>
+                    <field name="loai_chung_tu"/>
+                    <field name="trang_thai"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_so_cai_form" model="ir.ui.view">
+            <field name="name">so.cai.form</field>
+            <field name="model">so_cai</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_ghi_so" 
+                                string="Ghi sổ" 
+                                type="object" 
+                                class="oe_highlight"
+                                attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}"/>
+                        <button name="action_khoa_so" 
+                                string="Khóa sổ" 
+                                type="object" 
+                                class="oe_highlight"
+                                attrs="{'invisible': [('trang_thai', '!=', 'da_ghi_so')]}"/>
+                        <field name="trang_thai" widget="statusbar" 
+                               statusbar_visible="nhap,da_ghi_so,da_khoa_so"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ma_chung_tu" attrs="{'readonly': [('trang_thai', '!=', 'nhap')]}"/>
+                                <field name="ngay_ghi_so" attrs="{'readonly': [('trang_thai', '!=', 'nhap')]}"/>
+                                <field name="loai_chung_tu" attrs="{'readonly': [('trang_thai', '!=', 'nhap')]}"/>
+                            </group>
+                            <group>
+                                <field name="tai_khoan_no_id" attrs="{'readonly': [('trang_thai', '!=', 'nhap')]}"/>
+                                <field name="tai_khoan_co_id" attrs="{'readonly': [('trang_thai', '!=', 'nhap')]}"/>
+                                <field name="so_tien" attrs="{'readonly': [('trang_thai', '!=', 'nhap')]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="nguoi_lap_id"/>
+                                <field name="nguoi_duyet_id" attrs="{'readonly': [('trang_thai', '==', 'da_khoa_so')]}"/>
+                            </group>
+                            <group>
+                                <field name="phong_ban_id" attrs="{'readonly': [('trang_thai', '!=', 'nhap')]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="dien_giai" attrs="{'readonly': [('trang_thai', '!=', 'nhap')]}"/>
+                        </group>
+                        <group>
+                            <field name="ghi_chu" attrs="{'readonly': [('trang_thai', '==', 'da_khoa_so')]}"/>
+                        </group>
+                        <notebook>
+                            <page string="Khấu hao liên quan" attrs="{'invisible': [('loai_chung_tu', '!=', 'khau_hao')]}">
+                                <field name="khau_hao_ids">
+                                    <tree>
+                                        <field name="tai_san_id"/>
+                                        <field name="thang"/>
+                                        <field name="nam"/>
+                                        <field name="gia_tri_khau_hao"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_so_cai_search" model="ir.ui.view">
+            <field name="name">so.cai.search</field>
+            <field name="model">so_cai</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_chung_tu"/>
+                    <field name="dien_giai"/>
+                    <field name="tai_khoan_no_id"/>
+                    <field name="tai_khoan_co_id"/>
+                    <field name="loai_chung_tu"/>
+                    <field name="nguoi_lap_id"/>
+                    <field name="nguoi_duyet_id"/>
+                    <field name="phong_ban_id"/>
+                    <filter string="Nhập" name="nhap" domain="[('trang_thai', '=', 'nhap')]"/>
+                    <filter string="Đã ghi sổ" name="da_ghi_so" domain="[('trang_thai', '=', 'da_ghi_so')]"/>
+                    <filter string="Đã khóa sổ" name="da_khoa_so" domain="[('trang_thai', '=', 'da_khoa_so')]"/>
+                    <filter string="Khấu hao" name="khau_hao" domain="[('loai_chung_tu', '=', 'khau_hao')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Trạng thái" name="group_trang_thai" context="{'group_by': 'trang_thai'}"/>
+                        <filter string="Loại chứng từ" name="group_loai" context="{'group_by': 'loai_chung_tu'}"/>
+                        <filter string="Ngày ghi sổ" name="group_ngay" context="{'group_by': 'ngay_ghi_so'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_so_cai" model="ir.actions.act_window">
+            <field name="name">Sổ cái</field>
+            <field name="res_model">so_cai</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo bút toán kế toán đầu tiên
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

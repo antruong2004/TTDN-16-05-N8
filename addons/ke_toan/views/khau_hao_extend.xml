@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Extend Khấu hao form - thêm field Sổ cái -->
+        <record id="view_khau_hao_form_ke_toan" model="ir.ui.view">
+            <field name="name">khau.hao.form.ke.toan</field>
+            <field name="model">khau_hao</field>
+            <field name="inherit_id" ref="tai_san.view_khau_hao_form"/>
+            <field name="arch" type="xml">
+                <!-- Thêm field so_cai_id sau gia_tri_con_lai -->
+                <xpath expr="//field[@name='gia_tri_con_lai']" position="after">
+                    <field name="so_cai_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

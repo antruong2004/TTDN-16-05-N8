@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Tree View -->
+        <record id="view_tai_san_tree" model="ir.ui.view">
+            <field name="name">tai.san.tree</field>
+            <field name="model">tai_san</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="trang_thai=='dang_su_dung'" 
+                      decoration-warning="trang_thai=='bao_tri'" 
+                      decoration-muted="trang_thai=='khau_hao_het'"
+                      decoration-danger="trang_thai=='thanh_ly'">
+                    <field name="ma_tai_san"/>
+                    <field name="ten_tai_san"/>
+                    <field name="loai_tai_san_id"/>
+                    <field name="ngay_mua"/>
+                    <field name="nguyen_gia"/>
+                    <field name="gia_tri_con_lai"/>
+                    <field name="khau_hao_hang_thang"/>
+                    <field name="so_thang_da_khau_hao"/>
+                    <field name="trang_thai"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_tai_san_form" model="ir.ui.view">
+            <field name="name">tai.san.form</field>
+            <field name="model">tai_san</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_tao_khau_hao_tu_dong" 
+                                string="Tạo khấu hao tháng này" 
+                                type="object" 
+                                class="oe_highlight"
+                                attrs="{'invisible': [('trang_thai', 'not in', ['dang_su_dung', 'bao_tri'])]}"/>
+                        <field name="trang_thai" widget="statusbar" 
+                               statusbar_visible="dang_su_dung,bao_tri,khau_hao_het"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <group>
+                            <group>
+                                <field name="ma_tai_san"/>
+                                <field name="ten_tai_san"/>
+                                <field name="loai_tai_san_id"/>
+                                <field name="phuong_phap_khau_hao"/>
+                                <field name="nguoi_quan_ly_id"/>
+                                <field name="phong_ban_id"/>
+                            </group>
+                            <group>
+                                <field name="ngay_mua"/>
+                                <field name="ngay_bat_dau_khau_hao"/>
+                                <field name="nguyen_gia"/>
+                                <field name="gia_tri_khau_hao_luy_ke"/>
+                                <field name="gia_tri_con_lai"/>
+                                <field name="vi_tri"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="thoi_gian_khau_hao"/>
+                                <field name="khau_hao_hang_thang"/>
+                            </group>
+                            <group>
+                                <field name="so_thang_da_khau_hao"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="ghi_chu"/>
+                        </group>
+                        <notebook>
+                            <page string="Lịch sử khấu hao">
+                                <field name="khau_hao_ids">
+                                    <tree editable="bottom">
+                                        <field name="thang"/>
+                                        <field name="nam"/>
+                                        <field name="gia_tri_khau_hao"/>
+                                        <field name="gia_tri_con_lai"/>
+                                        <field name="ngay_ghi_nhan"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_tai_san_search" model="ir.ui.view">
+            <field name="name">tai.san.search</field>
+            <field name="model">tai_san</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_tai_san"/>
+                    <field name="ten_tai_san"/>
+                    <field name="loai_tai_san_id"/>
+                    <field name="nguoi_quan_ly_id"/>
+                    <field name="phong_ban_id"/>
+                    <filter string="Đang sử dụng" name="dang_su_dung" domain="[('trang_thai', '=', 'dang_su_dung')]"/>
+                    <filter string="Bảo trì" name="bao_tri" domain="[('trang_thai', '=', 'bao_tri')]"/>
+                    <filter string="Khấu hao hết" name="khau_hao_het" domain="[('trang_thai', '=', 'khau_hao_het')]"/>
+                    <filter string="Hoạt động" name="active" domain="[('active', '=', True)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Loại tài sản" name="group_loai" context="{'group_by': 'loai_tai_san_id'}"/>
+                        <filter string="Trạng thái" name="group_trang_thai" context="{'group_by': 'trang_thai'}"/>
+                        <filter string="Phòng ban" name="group_phong_ban" context="{'group_by': 'phong_ban_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_tai_san" model="ir.actions.act_window">
+            <field name="name">Tài sản</field>
+            <field name="res_model">tai_san</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo tài sản đầu tiên
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

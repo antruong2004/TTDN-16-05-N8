@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Tree View -->
+        <record id="view_tai_khoan_ke_toan_tree" model="ir.ui.view">
+            <field name="name">tai.khoan.ke.toan.tree</field>
+            <field name="model">tai_khoan_ke_toan</field>
+            <field name="arch" type="xml">
+                <tree decoration-bf="cap_do==1" decoration-info="cap_do==2">
+                    <field name="ma_tai_khoan"/>
+                    <field name="ten_tai_khoan"/>
+                    <field name="loai_tai_khoan"/>
+                    <field name="tinh_chat"/>
+                    <field name="cap_do"/>
+                    <field name="tong_no"/>
+                    <field name="tong_co"/>
+                    <field name="so_du"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_tai_khoan_ke_toan_form" model="ir.ui.view">
+            <field name="name">tai.khoan.ke.toan.form</field>
+            <field name="model">tai_khoan_ke_toan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <group>
+                            <group>
+                                <field name="ma_tai_khoan"/>
+                                <field name="ten_tai_khoan"/>
+                                <field name="loai_tai_khoan"/>
+                            </group>
+                            <group>
+                                <field name="tinh_chat"/>
+                                <field name="cap_do"/>
+                                <field name="tai_khoan_cha_id"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="tong_no"/>
+                                <field name="tong_co"/>
+                                <field name="so_du"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="mo_ta"/>
+                        </group>
+                        <notebook>
+                            <page string="Tài khoản con">
+                                <field name="tai_khoan_con_ids">
+                                    <tree>
+                                        <field name="ma_tai_khoan"/>
+                                        <field name="ten_tai_khoan"/>
+                                        <field name="tinh_chat"/>
+                                        <field name="so_du"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Sổ cái - Bên Nợ">
+                                <field name="so_cai_no_ids">
+                                    <tree>
+                                        <field name="ngay_ghi_so"/>
+                                        <field name="ma_chung_tu"/>
+                                        <field name="dien_giai"/>
+                                        <field name="tai_khoan_co_id"/>
+                                        <field name="so_tien"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Sổ cái - Bên Có">
+                                <field name="so_cai_co_ids">
+                                    <tree>
+                                        <field name="ngay_ghi_so"/>
+                                        <field name="ma_chung_tu"/>
+                                        <field name="dien_giai"/>
+                                        <field name="tai_khoan_no_id"/>
+                                        <field name="so_tien"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_tai_khoan_ke_toan_search" model="ir.ui.view">
+            <field name="name">tai.khoan.ke.toan.search</field>
+            <field name="model">tai_khoan_ke_toan</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_tai_khoan"/>
+                    <field name="ten_tai_khoan"/>
+                    <field name="loai_tai_khoan"/>
+                    <filter string="Hoạt động" name="active" domain="[('active', '=', True)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Loại tài khoản" name="group_loai" context="{'group_by': 'loai_tai_khoan'}"/>
+                        <filter string="Tính chất" name="group_tinh_chat" context="{'group_by': 'tinh_chat'}"/>
+                        <filter string="Cấp độ" name="group_cap_do" context="{'group_by': 'cap_do'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_tai_khoan_ke_toan" model="ir.actions.act_window">
+            <field name="name">Tài khoản kế toán</field>
+            <field name="res_model">tai_khoan_ke_toan</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo tài khoản kế toán đầu tiên
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

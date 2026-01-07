@@ -12,9 +12,8 @@
 # 1. Cài đặt công cụ, môi trường và các thư viện cần thiết
 
 ## 1.1. Clone project.
-git clone https://gitlab.com/anhlta/odoo-fitdnu.git
+git clone https://github.com/antruong2004/TTDN-16-05-N8
 git checkout 
-
 ## 1.2. cài đặt các thư viện cần thiết
 
 Người sử dụng thực thi các lệnh sau đề cài đặt các thư viện cần thiết

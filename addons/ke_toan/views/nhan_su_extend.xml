@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Extend Nhân viên form - thêm smart buttons và tab Chứng từ kế toán -->
+        <record id="view_nhan_vien_form_ke_toan" model="ir.ui.view">
+            <field name="name">nhan_vien.form.ke_toan</field>
+            <field name="model">nhan_vien</field>
+            <field name="inherit_id" ref="nhan_su.view_nhan_vien_form"/>
+            <field name="arch" type="xml">
+                <!-- Smart button chứng từ đã lập -->
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(ke_toan.action_so_cai)d" type="action" 
+                            class="oe_stat_button" icon="fa-file-text-o"
+                            context="{'search_default_nguoi_lap_id': active_id}">
+                        <field name="so_luong_chung_tu_lap" widget="statinfo" string="CT Đã lập"/>
+                    </button>
+                </xpath>
+                <!-- Tab chứng từ kế toán - thêm vào cuối notebook -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="Chứng từ kế toán">
+                        <group>
+                            <group string="Chứng từ đã lập">
+                                <field name="so_cai_lap_ids" nolabel="1">
+                                    <tree>
+                                        <field name="ngay_ghi_so"/>
+                                        <field name="ma_chung_tu"/>
+                                        <field name="dien_giai"/>
+                                        <field name="so_tien"/>
+                                        <field name="trang_thai"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group string="Chứng từ đã duyệt">
+                                <field name="so_cai_duyet_ids" nolabel="1">
+                                    <tree>
+                                        <field name="ngay_ghi_so"/>
+                                        <field name="ma_chung_tu"/>
+                                        <field name="dien_giai"/>
+                                        <field name="so_tien"/>
+                                        <field name="trang_thai"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Extend Phòng ban form - thêm smart button và tab Chứng từ kế toán -->
+        <record id="view_phong_ban_form_ke_toan" model="ir.ui.view">
+            <field name="name">phong_ban.form.ke_toan</field>
+            <field name="model">phong_ban</field>
+            <field name="inherit_id" ref="nhan_su.view_phong_ban_form"/>
+            <field name="arch" type="xml">
+                <!-- Smart button chứng từ -->
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(ke_toan.action_so_cai)d" type="action" 
+                            class="oe_stat_button" icon="fa-file-text-o"
+                            context="{'search_default_phong_ban_id': active_id}">
+                        <field name="so_luong_chung_tu" widget="statinfo" string="Chứng từ"/>
+                    </button>
+                </xpath>
+                <!-- Thêm thông tin tổng giá trị -->
+                <xpath expr="//field[@name='so_luong_nhan_vien']" position="after">
+                    <field name="tong_gia_tri_chung_tu"/>
+                </xpath>
+                <!-- Tab chứng từ kế toán - thêm vào cuối notebook -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="Chứng từ kế toán">
+                        <field name="so_cai_ids">
+                            <tree>
+                                <field name="ngay_ghi_so"/>
+                                <field name="ma_chung_tu"/>
+                                <field name="dien_giai"/>
+                                <field name="nguoi_lap_id"/>
+                                <field name="so_tien"/>
+                                <field name="trang_thai"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Tree View -->
+        <record id="view_loai_tai_san_tree" model="ir.ui.view">
+            <field name="name">loai.tai.san.tree</field>
+            <field name="model">loai_tai_san</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ma_loai"/>
+                    <field name="ten_loai"/>
+                    <field name="thoi_gian_khau_hao"/>
+                    <field name="ty_le_khau_hao_nam"/>
+                    <field name="phuong_phap_khau_hao"/>
+                    <field name="so_luong_tai_san"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_loai_tai_san_form" model="ir.ui.view">
+            <field name="name">loai.tai.san.form</field>
+            <field name="model">loai_tai_san</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <group>
+                            <group>
+                                <field name="ma_loai"/>
+                                <field name="ten_loai"/>
+                                <field name="phuong_phap_khau_hao"/>
+                                <field name="he_so_khau_hao" attrs="{'invisible': [('phuong_phap_khau_hao', '!=', 'so_du_giam_dan')], 'required': [('phuong_phap_khau_hao', '=', 'so_du_giam_dan')]}"/>
+                            </group>
+                            <group>
+                                <field name="thoi_gian_khau_hao"/>
+                                <field name="ty_le_khau_hao_nam"/>
+                                <field name="so_luong_tai_san"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="mo_ta"/>
+                        </group>
+                        <notebook>
+                            <page string="Tài sản">
+                                <field name="tai_san_ids">
+                                    <tree>
+                                        <field name="ma_tai_san"/>
+                                        <field name="ten_tai_san"/>
+                                        <field name="ngay_mua"/>
+                                        <field name="nguyen_gia"/>
+                                        <field name="gia_tri_con_lai"/>
+                                        <field name="trang_thai"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_loai_tai_san_search" model="ir.ui.view">
+            <field name="name">loai.tai.san.search</field>
+            <field name="model">loai_tai_san</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_loai"/>
+                    <field name="ten_loai"/>
+                    <field name="phuong_phap_khau_hao"/>
+                    <filter string="Hoạt động" name="active" domain="[('active', '=', True)]"/>
+                    <filter string="Đã lưu trữ" name="inactive" domain="[('active', '=', False)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Phương pháp khấu hao" name="group_phuong_phap" context="{'group_by': 'phuong_phap_khau_hao'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_loai_tai_san" model="ir.actions.act_window">
+            <field name="name">Loại tài sản</field>
+            <field name="res_model">loai_tai_san</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo loại tài sản đầu tiên
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

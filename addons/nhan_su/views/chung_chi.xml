@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ================= FORM VIEW ================= -->
+        <record id="view_chung_chi_form" model="ir.ui.view">
+            <field name="name">chung_chi.form</field>
+            <field name="model">chung_chi</field>
+            <field name="arch" type="xml">
+                <form string="Chứng chỉ">
+                    <sheet>
+
+                        <group string="Thông tin chứng chỉ" col="4">
+                            <field name="nhan_vien_id"/>
+                            <field name="ten_chung_chi"/>
+                            <field name="so_hieu_chung_chi"/>
+                            <field name="cap_do"/>
+                        </group>
+
+                        <group string="Thông tin cấp" col="4">
+                            <field name="co_quan_cap"/>
+                            <field name="ngay_cap"/>
+                            <field name="ngay_het_han"/>
+                            <field name="diem"/>
+                        </group>
+
+                        <group string="Mô tả" col="4">
+                            <field name="mo_ta" colspan="4" nolabel="1"/>
+                        </group>
+
+                        <group string="Tài liệu" col="4">
+                            <field name="attachment_id" colspan="4" nolabel="1"/>
+                        </group>
+
+                        <group string="Trạng thái" col="4">
+                            <field name="active"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ================= TREE VIEW ================= -->
+        <record id="view_chung_chi_tree" model="ir.ui.view">
+            <field name="name">chung_chi.tree</field>
+            <field name="model">chung_chi</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách chứng chỉ">
+                    <field name="nhan_vien_id"/>
+                    <field name="ten_chung_chi"/>
+                    <field name="co_quan_cap"/>
+                    <field name="ngay_cap"/>
+                    <field name="ngay_het_han"/>
+                    <field name="cap_do"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ================= SEARCH VIEW ================= -->
+        <record id="view_chung_chi_search" model="ir.ui.view">
+            <field name="name">chung_chi.search</field>
+            <field name="model">chung_chi</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="nhan_vien_id"/>
+                    <field name="ten_chung_chi"/>
+                    <field name="co_quan_cap"/>
+                    <field name="cap_do"/>
+
+                    <filter string="Còn hiệu lực" name="con_hieu_luc" domain="[('ngay_het_han','&gt;=',context_today())]"/>
+                    <filter string="Hết hiệu lực" name="het_hieu_luc" domain="[('ngay_het_han','&lt;',context_today())]"/>
+                    <filter string="Hoạt động" name="active" domain="[('active','=',True)]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- ================= ACTION ================= -->
+        <record id="action_chung_chi" model="ir.actions.act_window">
+            <field name="name">Chứng chỉ</field>
+            <field name="res_model">chung_chi</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_chung_chi_search"/>
+        </record>
+
+    </data>
+</odoo>

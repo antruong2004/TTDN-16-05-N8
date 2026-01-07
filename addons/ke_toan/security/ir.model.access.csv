@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tai_khoan_ke_toan,access.tai.khoan.ke.toan,model_tai_khoan_ke_toan,base.group_user,1,1,1,1
+access_so_cai,access.so.cai,model_so_cai,base.group_user,1,1,1,1

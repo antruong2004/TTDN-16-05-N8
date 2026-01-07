@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Tree View -->
+        <record id="view_khau_hao_tree" model="ir.ui.view">
+            <field name="name">khau.hao.tree</field>
+            <field name="model">khau_hao</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ma_tai_san"/>
+                    <field name="ten_tai_san"/>
+                    <field name="thang"/>
+                    <field name="nam"/>
+                    <field name="gia_tri_khau_hao"/>
+                    <field name="gia_tri_con_lai"/>
+                    <field name="ngay_ghi_nhan"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_khau_hao_form" model="ir.ui.view">
+            <field name="name">khau.hao.form</field>
+            <field name="model">khau_hao</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="tai_san_id"/>
+                                <field name="ma_tai_san"/>
+                                <field name="ten_tai_san"/>
+                            </group>
+                            <group>
+                                <field name="thang"/>
+                                <field name="nam"/>
+                                <field name="ngay_ghi_nhan"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="gia_tri_khau_hao"/>
+                                <field name="gia_tri_con_lai"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="ghi_chu"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_khau_hao_search" model="ir.ui.view">
+            <field name="name">khau.hao.search</field>
+            <field name="model">khau_hao</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="tai_san_id"/>
+                    <field name="ma_tai_san"/>
+                    <field name="ten_tai_san"/>
+                    <field name="thang"/>
+                    <field name="nam"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Tài sản" name="group_tai_san" context="{'group_by': 'tai_san_id'}"/>
+                        <filter string="Năm" name="group_nam" context="{'group_by': 'nam'}"/>
+                        <filter string="Tháng" name="group_thang" context="{'group_by': 'thang'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_khau_hao" model="ir.actions.act_window">
+            <field name="name">Khấu hao</field>
+            <field name="res_model">khau_hao</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Lịch sử khấu hao tài sản
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

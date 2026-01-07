@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ================= FORM VIEW ================= -->
+        <record id="view_cham_cong_form" model="ir.ui.view">
+            <field name="name">cham_cong.form</field>
+            <field name="model">cham_cong</field>
+            <field name="arch" type="xml">
+                <form string="Chấm công">
+                    <sheet>
+
+                        <group string="Thông tin nhân viên" col="4">
+                            <field name="nhan_vien_id"/>
+                            <field name="ngay_lam"/>
+                            <field name="loai_cham_cong"/>
+                        </group>
+
+                        <group string="Thời gian" col="4">
+                            <field name="gio_vao"/>
+                            <field name="gio_ra"/>
+                            <field name="so_gio_lam" readonly="0" force_save="1"/>
+                        </group>
+
+                        <group string="Ghi chú" col="4">
+                            <field name="ly_do" colspan="4" nolabel="1"/>
+                        </group>
+
+                        <group string="Ghi chú thêm" col="4">
+                            <field name="ghi_chu" colspan="4" nolabel="1"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ================= TREE VIEW ================= -->
+        <record id="view_cham_cong_tree" model="ir.ui.view">
+            <field name="name">cham_cong.tree</field>
+            <field name="model">cham_cong</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách chấm công">
+                    <field name="nhan_vien_id"/>
+                    <field name="ngay_lam"/>
+                    <field name="loai_cham_cong"/>
+                    <field name="gio_vao"/>
+                    <field name="gio_ra"/>
+                    <field name="so_gio_lam"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ================= SEARCH VIEW ================= -->
+        <record id="view_cham_cong_search" model="ir.ui.view">
+            <field name="name">cham_cong.search</field>
+            <field name="model">cham_cong</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="nhan_vien_id"/>
+                    <field name="ngay_lam"/>
+                    <field name="loai_cham_cong"/>
+
+                    <filter string="Đi làm" name="di_lam" domain="[('loai_cham_cong','=','di_lam')]"/>
+                    <filter string="Nghỉ phép" name="nghi_phep" domain="[('loai_cham_cong','=','nghi_phep')]"/>
+                    <filter string="Nghỉ ốm" name="nghi_om" domain="[('loai_cham_cong','=','nghi_om')]"/>
+                    <filter string="Làm thêm" name="lam_them" domain="[('loai_cham_cong','=','lam_them')]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- ================= ACTION ================= -->
+        <record id="action_cham_cong" model="ir.actions.act_window">
+            <field name="name">Chấm công</field>
+            <field name="res_model">cham_cong</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_cham_cong_search"/>
+        </record>
+
+    </data>
+</odoo>

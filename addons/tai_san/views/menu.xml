@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ============ MENU RIÊNG TÀI SẢN ============ -->
+        <menuitem
+            id="menu_tai_san_root"
+            name="Tài sản"
+            sequence="20"/>
+
+        <menuitem
+            id="menu_loai_tai_san"
+            name="Loại tài sản"
+            parent="menu_tai_san_root"
+            sequence="1"
+            action="action_loai_tai_san"/>
+
+        <menuitem
+            id="menu_tai_san"
+            name="Tài sản"
+            parent="menu_tai_san_root"
+            sequence="2"
+            action="action_tai_san"/>
+
+        <menuitem
+            id="menu_khau_hao"
+            name="Khấu hao"
+            parent="menu_tai_san_root"
+            sequence="3"
+            action="action_khau_hao"/>
+
+        <!-- ============ TÍCH HỢP VÀO MENU NHÂN SỰ ============ -->
+        <menuitem
+            id="menu_tai_san_nhan_su"
+            name="Tài sản"
+            parent="nhan_su.menu_root"
+            sequence="20"/>
+
+        <menuitem
+            id="menu_tai_san_nhan_su_list"
+            name="Danh sách tài sản"
+            parent="menu_tai_san_nhan_su"
+            sequence="1"
+            action="action_tai_san"/>
+
+        <menuitem
+            id="menu_loai_tai_san_nhan_su"
+            name="Loại tài sản"
+            parent="menu_tai_san_nhan_su"
+            sequence="2"
+            action="action_loai_tai_san"/>
+
+        <menuitem
+            id="menu_khau_hao_nhan_su"
+            name="Khấu hao"
+            parent="menu_tai_san_nhan_su"
+            sequence="3"
+            action="action_khau_hao"/>
+        
+    </data>
+</odoo>
