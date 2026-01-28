@@ -40,7 +40,56 @@ Module hỗ trợ quản lý toàn bộ vòng đời của tài sản, bao gồm
 - Phân bổ – luân chuyển – thanh lý  
 - Kiểm kê và khấu hao tài sản  
 
-(Các hình ảnh minh họa được lưu trong thư mục `images/`)
+
+#### Hình ảnh minh họa giao diện
+
+<details>
+  <summary><strong>Dashboard tổng quan</strong></summary>
+  <p align="center">
+    <img src="images/dashboard.png" alt="Dashboard tổng quan" width="600"/>
+    <br><em>Dashboard tổng quan</em>
+  </p>
+</details>
+
+<details>
+  <summary><strong>Quản lý mượn trả tài sản</strong></summary>
+  <p align="center">
+    <img src="images/muon_tra_tai_san.png" alt="Quản lý mượn trả tài sản" width="600"/>
+    <br><em>Quản lý mượn trả tài sản</em>
+  </p>
+</details>
+
+<details>
+  <summary><strong>Quản lý loại tài sản</strong></summary>
+  <p align="center">
+    <img src="images/loai_tai_san.png" alt="Quản lý loại tài sản" width="600"/>
+    <br><em>Quản lý loại tài sản</em>
+  </p>
+</details>
+
+<details>
+  <summary><strong>Khấu hao tài sản</strong></summary>
+  <p align="center">
+    <img src="images/Khau-hao-tai-san.png" alt="Khấu hao tài sản" width="600"/>
+    <br><em>Khấu hao tài sản</em>
+  </p>
+</details>
+
+<details>
+  <summary><strong>Phân bổ – luân chuyển – thanh lý</strong></summary>
+  <p align="center">
+    <img src="images/phan_bo_luan_chuyen.png" alt="Phân bổ – luân chuyển – thanh lý" width="600"/>
+    <br><em>Phân bổ – luân chuyển – thanh lý</em>
+  </p>
+</details>
+
+<details>
+  <summary><strong>Kiểm kê và khấu hao tài sản</strong></summary>
+  <p align="center">
+    <img src="images/kiem_ke_khau_hao.png" alt="Kiểm kê và khấu hao tài sản" width="600"/>
+    <br><em>Kiểm kê và khấu hao tài sản</em>
+  </p>
+</details>
 
 ---
 
