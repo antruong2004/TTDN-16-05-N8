@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- =================================================== -->
+        <!--           KỲ KẾ TOÁN (Fiscal Periods)             -->
+        <!-- =================================================== -->
+        
+        <!-- Năm tài chính 2024 -->
+        <record id="ky_nam_2024" model="ke_toan.ky">
+            <field name="ten_ky">Năm 2024</field>
+            <field name="loai_ky">nam</field>
+            <field name="ngay_bat_dau">2024-01-01</field>
+            <field name="ngay_ket_thuc">2024-12-31</field>
+            <field name="nam_tai_chinh">2024</field>
+            <field name="trang_thai">dong</field>
+        </record>
+        
+        <!-- Năm tài chính 2025 -->
+        <record id="ky_nam_2025" model="ke_toan.ky">
+            <field name="ten_ky">Năm 2025</field>
+            <field name="loai_ky">nam</field>
+            <field name="ngay_bat_dau">2025-01-01</field>
+            <field name="ngay_ket_thuc">2025-12-31</field>
+            <field name="nam_tai_chinh">2025</field>
+            <field name="trang_thai">mo</field>
+        </record>
+        
+        <!-- Quý 1/2025 -->
+        <record id="ky_quy_1_2025" model="ke_toan.ky">
+            <field name="ten_ky">Quý 1/2025</field>
+            <field name="loai_ky">quy</field>
+            <field name="ngay_bat_dau">2025-01-01</field>
+            <field name="ngay_ket_thuc">2025-03-31</field>
+            <field name="nam_tai_chinh">2025</field>
+            <field name="quy">1</field>
+            <field name="trang_thai">mo</field>
+        </record>
+        
+        <!-- Tháng 1/2025 -->
+        <record id="ky_thang_01_2025" model="ke_toan.ky">
+            <field name="ten_ky">Tháng 1/2025</field>
+            <field name="loai_ky">thang</field>
+            <field name="ngay_bat_dau">2025-01-01</field>
+            <field name="ngay_ket_thuc">2025-01-31</field>
+            <field name="nam_tai_chinh">2025</field>
+            <field name="thang">1</field>
+            <field name="trang_thai">mo</field>
+        </record>
+        
+        <!-- Tháng 2/2025 -->
+        <record id="ky_thang_02_2025" model="ke_toan.ky">
+            <field name="ten_ky">Tháng 2/2025</field>
+            <field name="loai_ky">thang</field>
+            <field name="ngay_bat_dau">2025-02-01</field>
+            <field name="ngay_ket_thuc">2025-02-28</field>
+            <field name="nam_tai_chinh">2025</field>
+            <field name="thang">2</field>
+            <field name="trang_thai">mo</field>
+        </record>
+        
+        <!-- Tháng 3/2025 -->
+        <record id="ky_thang_03_2025" model="ke_toan.ky">
+            <field name="ten_ky">Tháng 3/2025</field>
+            <field name="loai_ky">thang</field>
+            <field name="ngay_bat_dau">2025-03-01</field>
+            <field name="ngay_ket_thuc">2025-03-31</field>
+            <field name="nam_tai_chinh">2025</field>
+            <field name="thang">3</field>
+            <field name="trang_thai">mo</field>
+        </record>
+        
+        <!-- Tháng 12/2024 (đã đóng) -->
+        <record id="ky_thang_12_2024" model="ke_toan.ky">
+            <field name="ten_ky">Tháng 12/2024</field>
+            <field name="loai_ky">thang</field>
+            <field name="ngay_bat_dau">2024-12-01</field>
+            <field name="ngay_ket_thuc">2024-12-31</field>
+            <field name="nam_tai_chinh">2024</field>
+            <field name="thang">12</field>
+            <field name="trang_thai">dong</field>
+        </record>
+        
+        
+        <!-- =================================================== -->
+        <!--              BÚT TOÁN (Journal Entries)            -->
+        <!-- =================================================== -->
+        
+        <!-- Bút toán 1: Nhận vốn góp ban đầu -->
+        <record id="but_toan_01" model="ke_toan.but_toan">
+            <field name="so_chung_tu">BT001</field>
+            <field name="ngay_chung_tu">2025-01-02</field>
+            <field name="loai_chung_tu">thu</field>
+            <field name="dien_giai">Nhận vốn góp từ chủ sở hữu</field>
+            <field name="trang_thai">da_ghi_so</field>
+        </record>
+        
+        <!-- Chi tiết bút toán 1 -->
+        <record id="but_toan_01_ct1" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_01"/>
+            <field name="tai_khoan_id" ref="tk_1111"/>
+            <field name="so_tien_no">500000000</field>
+            <field name="so_tien_co">0</field>
+            <field name="dien_giai">Tiền mặt tại quỹ</field>
+        </record>
+        
+        <record id="but_toan_01_ct2" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_01"/>
+            <field name="tai_khoan_id" ref="tk_1121"/>
+            <field name="so_tien_no">1000000000</field>
+            <field name="so_tien_co">0</field>
+            <field name="dien_giai">Tiền gửi ngân hàng</field>
+        </record>
+        
+        <record id="but_toan_01_ct3" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_01"/>
+            <field name="tai_khoan_id" ref="tk_411"/>
+            <field name="so_tien_no">0</field>
+            <field name="so_tien_co">1500000000</field>
+            <field name="dien_giai">Vốn đầu tư của chủ sở hữu</field>
+        </record>
+        
+        
+        <!-- Bút toán 2: Mua nguyên vật liệu -->
+        <record id="but_toan_02" model="ke_toan.but_toan">
+            <field name="so_chung_tu">BT002</field>
+            <field name="ngay_chung_tu">2025-01-05</field>
+            <field name="loai_chung_tu">nhap</field>
+            <field name="dien_giai">Mua nguyên vật liệu sản xuất</field>
+            <field name="trang_thai">da_ghi_so</field>
+        </record>
+        
+        <record id="but_toan_02_ct1" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_02"/>
+            <field name="tai_khoan_id" ref="tk_152"/>
+            <field name="so_tien_no">100000000</field>
+            <field name="so_tien_co">0</field>
+            <field name="dien_giai">Nguyên vật liệu nhập kho</field>
+        </record>
+        
+        <record id="but_toan_02_ct2" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_02"/>
+            <field name="tai_khoan_id" ref="tk_133"/>
+            <field name="so_tien_no">10000000</field>
+            <field name="so_tien_co">0</field>
+            <field name="dien_giai">Thuế GTGT được khấu trừ</field>
+        </record>
+        
+        <record id="but_toan_02_ct3" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_02"/>
+            <field name="tai_khoan_id" ref="tk_1121"/>
+            <field name="so_tien_no">0</field>
+            <field name="so_tien_co">110000000</field>
+            <field name="dien_giai">Thanh toán qua ngân hàng</field>
+        </record>
+        
+        
+        <!-- Bút toán 3: Chi phí lương tháng 1 -->
+        <record id="but_toan_03" model="ke_toan.but_toan">
+            <field name="so_chung_tu">BT003</field>
+            <field name="ngay_chung_tu">2025-01-10</field>
+            <field name="loai_chung_tu">luong</field>
+            <field name="dien_giai">Trích lương và BHXH tháng 1/2025</field>
+            <field name="trang_thai">da_ghi_so</field>
+        </record>
+        
+        <record id="but_toan_03_ct1" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_03"/>
+            <field name="tai_khoan_id" ref="tk_622"/>
+            <field name="so_tien_no">80000000</field>
+            <field name="so_tien_co">0</field>
+            <field name="dien_giai">Chi phí nhân viên quản lý</field>
+        </record>
+        
+        <record id="but_toan_03_ct2" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_03"/>
+            <field name="tai_khoan_id" ref="tk_334"/>
+            <field name="so_tien_no">0</field>
+            <field name="so_tien_co">72000000</field>
+            <field name="dien_giai">Phải trả người lao động</field>
+        </record>
+        
+        <record id="but_toan_03_ct3" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_03"/>
+            <field name="tai_khoan_id" ref="tk_338"/>
+            <field name="so_tien_no">0</field>
+            <field name="so_tien_co">8000000</field>
+            <field name="dien_giai">Phải nộp BHXH, BHYT, BHTN</field>
+        </record>
+        
+        
+        <!-- Bút toán 4: Chi phí điện nước -->
+        <record id="but_toan_04" model="ke_toan.but_toan">
+            <field name="so_chung_tu">BT004</field>
+            <field name="ngay_chung_tu">2025-01-15</field>
+            <field name="loai_chung_tu">chi</field>
+            <field name="dien_giai">Chi phí điện nước tháng 1/2025</field>
+            <field name="trang_thai">da_ghi_so</field>
+        </record>
+        
+        <record id="but_toan_04_ct1" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_04"/>
+            <field name="tai_khoan_id" ref="tk_6274"/>
+            <field name="so_tien_no">15000000</field>
+            <field name="so_tien_co">0</field>
+            <field name="dien_giai">Chi phí dịch vụ mua ngoài</field>
+        </record>
+        
+        <record id="but_toan_04_ct2" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_04"/>
+            <field name="tai_khoan_id" ref="tk_1111"/>
+            <field name="so_tien_no">0</field>
+            <field name="so_tien_co">15000000</field>
+            <field name="dien_giai">Thanh toán bằng tiền mặt</field>
+        </record>
+        
+        
+        <!-- Bút toán 5: Khấu hao tài sản cố định -->
+        <record id="but_toan_05" model="ke_toan.but_toan">
+            <field name="so_chung_tu">BT005</field>
+            <field name="ngay_chung_tu">2025-01-31</field>
+            <field name="loai_chung_tu">khau_hao</field>
+            <field name="dien_giai">Khấu hao TSCĐ tháng 1/2025</field>
+            <field name="trang_thai">da_ghi_so</field>
+        </record>
+        
+        <record id="but_toan_05_ct1" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_05"/>
+            <field name="tai_khoan_id" ref="tk_6274"/>
+            <field name="so_tien_no">5000000</field>
+            <field name="so_tien_co">0</field>
+            <field name="dien_giai">Chi phí khấu hao</field>
+        </record>
+        
+        <record id="but_toan_05_ct2" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_05"/>
+            <field name="tai_khoan_id" ref="tk_2141"/>
+            <field name="so_tien_no">0</field>
+            <field name="so_tien_co">5000000</field>
+            <field name="dien_giai">Hao mòn TSCĐ</field>
+        </record>
+        
+        
+        <!-- Bút toán 6: Thu tiền từ khách hàng -->
+        <record id="but_toan_06" model="ke_toan.but_toan">
+            <field name="so_chung_tu">BT006</field>
+            <field name="ngay_chung_tu">2025-01-20</field>
+            <field name="loai_chung_tu">thu</field>
+            <field name="dien_giai">Thu tiền từ khách hàng ABC</field>
+            <field name="trang_thai">da_ghi_so</field>
+        </record>
+        
+        <record id="but_toan_06_ct1" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_06"/>
+            <field name="tai_khoan_id" ref="tk_1121"/>
+            <field name="so_tien_no">200000000</field>
+            <field name="so_tien_co">0</field>
+            <field name="dien_giai">Tiền gửi ngân hàng</field>
+        </record>
+        
+        <record id="but_toan_06_ct2" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_06"/>
+            <field name="tai_khoan_id" ref="tk_131"/>
+            <field name="so_tien_no">0</field>
+            <field name="so_tien_co">200000000</field>
+            <field name="dien_giai">Phải thu khách hàng</field>
+        </record>
+        
+        
+        <!-- Bút toán 7: Mua sắm tài sản cố định -->
+        <record id="but_toan_07" model="ke_toan.but_toan">
+            <field name="so_chung_tu">BT007</field>
+            <field name="ngay_chung_tu">2025-02-01</field>
+            <field name="loai_chung_tu">mua_sam</field>
+            <field name="dien_giai">Mua máy tính văn phòng</field>
+            <field name="trang_thai">da_ghi_so</field>
+        </record>
+        
+        <record id="but_toan_07_ct1" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_07"/>
+            <field name="tai_khoan_id" ref="tk_2114"/>
+            <field name="so_tien_no">30000000</field>
+            <field name="so_tien_co">0</field>
+            <field name="dien_giai">TSCĐ hữu hình</field>
+        </record>
+        
+        <record id="but_toan_07_ct2" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_07"/>
+            <field name="tai_khoan_id" ref="tk_1121"/>
+            <field name="so_tien_no">0</field>
+            <field name="so_tien_co">30000000</field>
+            <field name="dien_giai">Thanh toán qua ngân hàng</field>
+        </record>
+        
+        
+        <!-- Bút toán 8: Bán hàng và doanh thu -->
+        <record id="but_toan_08" model="ke_toan.but_toan">
+            <field name="so_chung_tu">BT008</field>
+            <field name="ngay_chung_tu">2025-02-10</field>
+            <field name="loai_chung_tu">xuat</field>
+            <field name="dien_giai">Doanh thu bán hàng tháng 2</field>
+            <field name="trang_thai">da_ghi_so</field>
+        </record>
+        
+        <record id="but_toan_08_ct1" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_08"/>
+            <field name="tai_khoan_id" ref="tk_131"/>
+            <field name="so_tien_no">220000000</field>
+            <field name="so_tien_co">0</field>
+            <field name="dien_giai">Phải thu khách hàng</field>
+        </record>
+        
+        <record id="but_toan_08_ct2" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_08"/>
+            <field name="tai_khoan_id" ref="tk_511"/>
+            <field name="so_tien_no">0</field>
+            <field name="so_tien_co">200000000</field>
+            <field name="dien_giai">Doanh thu bán hàng</field>
+        </record>
+        
+        <record id="but_toan_08_ct3" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_08"/>
+            <field name="tai_khoan_id" ref="tk_3331"/>
+            <field name="so_tien_no">0</field>
+            <field name="so_tien_co">20000000</field>
+            <field name="dien_giai">Thuế GTGT đầu ra</field>
+        </record>
+        
+        
+        <!-- Bút toán 9: Giá vốn hàng bán -->
+        <record id="but_toan_09" model="ke_toan.but_toan">
+            <field name="so_chung_tu">BT009</field>
+            <field name="ngay_chung_tu">2025-02-10</field>
+            <field name="loai_chung_tu">xuat</field>
+            <field name="dien_giai">Giá vốn hàng bán tháng 2</field>
+            <field name="trang_thai">da_ghi_so</field>
+        </record>
+        
+        <record id="but_toan_09_ct1" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_09"/>
+            <field name="tai_khoan_id" ref="tk_632"/>
+            <field name="so_tien_no">120000000</field>
+            <field name="so_tien_co">0</field>
+            <field name="dien_giai">Giá vốn hàng bán</field>
+        </record>
+        
+        <record id="but_toan_09_ct2" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_09"/>
+            <field name="tai_khoan_id" ref="tk_152"/>
+            <field name="so_tien_no">0</field>
+            <field name="so_tien_co">120000000</field>
+            <field name="dien_giai">Xuất kho nguyên vật liệu</field>
+        </record>
+        
+        
+        <!-- Bút toán 10: Trả lương nhân viên -->
+        <record id="but_toan_10" model="ke_toan.but_toan">
+            <field name="so_chung_tu">BT010</field>
+            <field name="ngay_chung_tu">2025-02-15</field>
+            <field name="loai_chung_tu">chi</field>
+            <field name="dien_giai">Trả lương nhân viên tháng 1</field>
+            <field name="trang_thai">da_ghi_so</field>
+        </record>
+        
+        <record id="but_toan_10_ct1" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_10"/>
+            <field name="tai_khoan_id" ref="tk_334"/>
+            <field name="so_tien_no">72000000</field>
+            <field name="so_tien_co">0</field>
+            <field name="dien_giai">Phải trả người lao động</field>
+        </record>
+        
+        <record id="but_toan_10_ct2" model="ke_toan.but_toan_chi_tiet">
+            <field name="but_toan_id" ref="but_toan_10"/>
+            <field name="tai_khoan_id" ref="tk_1121"/>
+            <field name="so_tien_no">0</field>
+            <field name="so_tien_co">72000000</field>
+            <field name="dien_giai">Chuyển khoản lương</field>
+        </record>
+        
+    </data>
+</odoo>

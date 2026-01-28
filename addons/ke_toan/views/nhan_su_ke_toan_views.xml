@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 
+    Các view mở rộng cho nhân sự sẽ được bật sau khi upgrade module lần đầu.
+    Uncomment sau khi các field đã được tạo trong database.
+    -->
+    
+    <!--
+    <record id="view_nhan_vien_form_inherit_ke_toan" model="ir.ui.view">
+        <field name="name">nhan.vien.form.inherit.ke.toan</field>
+        <field name="model">nhan_vien</field>
+        <field name="inherit_id" ref="nhan_su.view_nhan_vien_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Kế toán" name="tab_ke_toan">
+                    <group>
+                        <group string="Tài khoản kế toán">
+                            <field name="tk_luong_id"/>
+                            <field name="tk_bhxh_id"/>
+                        </group>
+                        <group string="Thống kê">
+                            <field name="tong_but_toan"/>
+                            <field name="tong_chi_phi_luong"/>
+                        </group>
+                    </group>
+                    <field name="but_toan_ids" readonly="1">
+                        <tree>
+                            <field name="so_chung_tu"/>
+                            <field name="ngay_chung_tu"/>
+                            <field name="loai_chung_tu"/>
+                            <field name="dien_giai"/>
+                            <field name="tong_no"/>
+                            <field name="trang_thai"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="view_phong_ban_form_inherit_ke_toan" model="ir.ui.view">
+        <field name="name">phong.ban.form.inherit.ke.toan</field>
+        <field name="model">phong_ban</field>
+        <field name="inherit_id" ref="nhan_su.view_phong_ban_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Kế toán" name="tab_ke_toan_pb">
+                    <group>
+                        <group string="Cấu hình">
+                            <field name="tk_chi_phi_id"/>
+                        </group>
+                        <group string="Thống kê">
+                            <field name="tong_chi_phi_ky_nay"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="view_bang_luong_form_inherit_ke_toan" model="ir.ui.view">
+        <field name="name">bang.luong.form.inherit.ke.toan</field>
+        <field name="model">bang_luong</field>
+        <field name="inherit_id" ref="nhan_su.view_bang_luong_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_tao_but_toan" type="object" string="Tạo bút toán kế toán"
+                        class="btn-secondary" attrs="{'invisible': ['|', ('da_hach_toan', '=', True), ('trang_thai', '!=', 'da_duyet')]}"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <group string="Kế toán" attrs="{'invisible': [('da_hach_toan', '=', False)]}">
+                    <field name="but_toan_id"/>
+                    <field name="da_hach_toan"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    -->
+</odoo>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kiem_ke_tai_san_tree" model="ir.ui.view">
+        <field name="name">kiem.ke.tai.san.tree</field>
+        <field name="model">kiem_ke_tai_san</field>
+        <field name="arch" type="xml">
+            <tree string="Kiểm kê tài sản" decoration-success="trang_thai=='hoan_thanh'"
+                  decoration-info="trang_thai=='dang_kiem_ke'" decoration-muted="trang_thai=='huy'"
+                  decoration-warning="trang_thai=='nhap'">
+                <field name="ma_phieu"/>
+                <field name="ten_dot_kiem_ke"/>
+                <field name="ngay_bat_dau"/>
+                <field name="ngay_ket_thuc"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_kiem_ke_tai_san_form" model="ir.ui.view">
+        <field name="name">kiem.ke.tai.san.form</field>
+        <field name="model">kiem_ke_tai_san</field>
+        <field name="arch" type="xml">
+            <form string="Kiểm kê tài sản">
+                <header>
+                    <button name="action_bat_dau_kiem_ke" type="object" string="Bắt đầu kiểm kê"
+                            class="btn-primary" attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}"/>
+                    <button name="action_hoan_thanh" type="object" string="Hoàn thành"
+                            class="btn-success" attrs="{'invisible': [('trang_thai', '!=', 'dang_kiem_ke')]}"/>
+                    <button name="action_huy" type="object" string="Hủy"
+                            class="btn-danger" attrs="{'invisible': [('trang_thai', 'in', ['hoan_thanh', 'huy'])]}" confirm="Bạn có chắc chắn muốn hủy?"/>
+                    <field name="trang_thai" widget="statusbar" statusbar_visible="nhap,dang_kiem_ke,hoan_thanh"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ma_phieu" readonly="1"/>
+                        </h1>
+                        <h3>
+                            <field name="ten_dot_kiem_ke" placeholder="Tên đợt kiểm kê..."/>
+                        </h3>
+                    </div>
+                    <group>
+                        <field name="ma_phieu" invisible="1"/>
+                        <field name="ten_dot_kiem_ke"/>
+                        <field name="ngay_bat_dau"/>
+                        <field name="ngay_ket_thuc"/>
+                        <field name="phong_ban_id"/>
+                        <field name="trang_thai"/>
+                    </group>
+                    <group>
+                        <field name="ghi_chu"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_kiem_ke_tai_san" model="ir.actions.act_window">
+        <field name="name">Kiểm kê tài sản</field>
+        <field name="res_model">kiem_ke_tai_san</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

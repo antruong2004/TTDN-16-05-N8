@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 
+    Các view mở rộng cho tài sản sẽ được bật sau khi upgrade module lần đầu.
+    Uncomment sau khi các field đã được tạo trong database.
+    -->
+    
+    <!--
+    <record id="view_danh_muc_tai_san_form_inherit_ke_toan" model="ir.ui.view">
+        <field name="name">danh.muc.tai.san.form.inherit.ke.toan</field>
+        <field name="model">danh_muc_tai_san</field>
+        <field name="inherit_id" ref="quan_ly_tai_san.view_danh_muc_tai_san_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <group string="Tài khoản kế toán mặc định">
+                    <field name="tk_nguyen_gia_id"/>
+                    <field name="tk_khau_hao_id"/>
+                    <field name="tk_chi_phi_khau_hao_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="view_tai_san_form_inherit_ke_toan" model="ir.ui.view">
+        <field name="name">tai.san.form.inherit.ke.toan</field>
+        <field name="model">tai_san</field>
+        <field name="inherit_id" ref="quan_ly_tai_san.view_tai_san_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_tao_but_toan_mua_sam" type="object" class="oe_stat_button" icon="fa-book"
+                        attrs="{'invisible': [('da_hach_toan_mua', '=', True)]}">
+                    <span>Hạch toán mua</span>
+                </button>
+                <button class="oe_stat_button" type="object" name="action_view_but_toan" icon="fa-list">
+                    <field name="so_but_toan" string="Bút toán" widget="statinfo"/>
+                </button>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Kế toán" name="tab_ke_toan">
+                    <group>
+                        <group string="Tài khoản kế toán">
+                            <field name="tk_nguyen_gia_id"/>
+                            <field name="tk_khau_hao_id"/>
+                            <field name="tk_chi_phi_khau_hao_id"/>
+                        </group>
+                        <group string="Trạng thái hạch toán">
+                            <field name="da_hach_toan_mua"/>
+                            <field name="but_toan_mua_sam_id"/>
+                        </group>
+                    </group>
+                    <field name="but_toan_ids" readonly="1">
+                        <tree>
+                            <field name="so_chung_tu"/>
+                            <field name="ngay_chung_tu"/>
+                            <field name="loai_chung_tu"/>
+                            <field name="dien_giai"/>
+                            <field name="tong_no"/>
+                            <field name="tong_co"/>
+                            <field name="trang_thai"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="view_khau_hao_form_inherit_ke_toan" model="ir.ui.view">
+        <field name="name">khau.hao.form.inherit.ke.toan</field>
+        <field name="model">khau_hao</field>
+        <field name="inherit_id" ref="quan_ly_tai_san.view_khau_hao_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_tao_but_toan_khau_hao" type="object" string="Tạo bút toán KT"
+                        class="btn-secondary" attrs="{'invisible': ['|', ('da_hach_toan_ke_toan', '=', True), ('trang_thai', '!=', 'da_ghi_nhan')]}"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <group string="Kế toán" attrs="{'invisible': [('da_hach_toan_ke_toan', '=', False)]}">
+                    <field name="but_toan_ke_toan_id"/>
+                    <field name="da_hach_toan_ke_toan"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="view_thanh_ly_form_inherit_ke_toan" model="ir.ui.view">
+        <field name="name">thanh.ly.tai.san.form.inherit.ke.toan</field>
+        <field name="model">thanh_ly_tai_san</field>
+        <field name="inherit_id" ref="quan_ly_tai_san.view_thanh_ly_tai_san_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_tao_but_toan_thanh_ly" type="object" string="Tạo bút toán thanh lý"
+                        class="btn-secondary" attrs="{'invisible': ['|', ('da_hach_toan_thanh_ly', '=', True), ('trang_thai', '!=', 'hoan_thanh')]}"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <group string="Kế toán" attrs="{'invisible': [('da_hach_toan_thanh_ly', '=', False)]}">
+                    <field name="but_toan_thanh_ly_id"/>
+                    <field name="da_hach_toan_thanh_ly"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    -->
+</odoo>

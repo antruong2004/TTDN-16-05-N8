@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Tree View - Chấm công -->
+    <record id="view_cham_cong_tree" model="ir.ui.view">
+        <field name="name">cham_cong.tree</field>
+        <field name="model">cham_cong</field>
+        <field name="arch" type="xml">
+            <tree string="Chấm công">
+                <field name="nhan_vien_id"/>
+                <field name="phong_ban_id"/>
+                <field name="ngay_cham_cong"/>
+                <field name="gio_vao" widget="datetime"/>
+                <field name="gio_ra" widget="datetime"/>
+                <field name="so_gio_lam" sum="Tổng giờ"/>
+                <field name="so_gio_tang_ca" sum="Tổng giờ tăng ca"/>
+                <field name="trang_thai" decoration-success="trang_thai == 'du'" 
+                                       decoration-warning="trang_thai in ['tre', 'som']"
+                                       decoration-danger="trang_thai == 'nghi_khong_phep'"/>
+                <field name="loai_cong"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View - Chấm công -->
+    <record id="view_cham_cong_form" model="ir.ui.view">
+        <field name="name">cham_cong.form</field>
+        <field name="model">cham_cong</field>
+        <field name="arch" type="xml">
+            <form string="Chấm công">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="nhan_vien_id"/>
+                            <field name="phong_ban_id"/>
+                            <field name="ngay_cham_cong"/>
+                            <field name="loai_cong"/>
+                        </group>
+                        <group>
+                            <field name="gio_vao" widget="datetime"/>
+                            <field name="gio_ra" widget="datetime"/>
+                            <field name="so_gio_lam"/>
+                            <field name="so_gio_tang_ca"/>
+                            <field name="trang_thai"/>
+                        </group>
+                    </group>
+                    <group string="Giờ quy định">
+                        <group>
+                            <field name="gio_vao_quy_dinh"/>
+                            <field name="gio_ra_quy_dinh"/>
+                        </group>
+                    </group>
+                    <group string="Ghi chú">
+                        <field name="ghi_chu" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View - Chấm công -->
+    <record id="view_cham_cong_search" model="ir.ui.view">
+        <field name="name">cham_cong.search</field>
+        <field name="model">cham_cong</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm chấm công">
+                <field name="nhan_vien_id"/>
+                <field name="phong_ban_id"/>
+                <field name="ngay_cham_cong"/>
+                <filter string="Hôm nay" name="today" 
+                        domain="[('ngay_cham_cong', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Tháng này" name="this_month" 
+                        domain="[('ngay_cham_cong', '&gt;=', context_today().strftime('%Y-%m-01')),
+                                ('ngay_cham_cong', '&lt;=', (context_today() + relativedelta(day=31)).strftime('%Y-%m-%d'))]"/>
+                <separator/>
+                <filter string="Đủ công" name="du_cong" domain="[('trang_thai', '=', 'du')]"/>
+                <filter string="Đi trễ" name="di_tre" domain="[('trang_thai', '=', 'tre')]"/>
+                <filter string="Về sớm" name="ve_som" domain="[('trang_thai', '=', 'som')]"/>
+                <filter string="Nghỉ không phép" name="nghi_khong_phep" domain="[('trang_thai', '=', 'nghi_khong_phep')]"/>
+                <separator/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Nhân viên" name="group_nhan_vien" context="{'group_by':'nhan_vien_id'}"/>
+                    <filter string="Phòng ban" name="group_phong_ban" context="{'group_by':'phong_ban_id'}"/>
+                    <filter string="Ngày" name="group_ngay" context="{'group_by':'ngay_cham_cong'}"/>
+                    <filter string="Trạng thái" name="group_trang_thai" context="{'group_by':'trang_thai'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action - Chấm công -->
+    <record id="action_cham_cong" model="ir.actions.act_window">
+        <field name="name">Chấm công</field>
+        <field name="res_model">cham_cong</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_this_month': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo bản ghi chấm công mới
+            </p>
+            <p>
+                Quản lý chấm công hàng ngày của nhân viên, theo dõi giờ vào, giờ ra và tình trạng làm việc.
+            </p>
+        </field>
+    </record>
+
+    <!-- Tree View - Báo cáo chấm công -->
+    <record id="view_bao_cao_cham_cong_tree" model="ir.ui.view">
+        <field name="name">bao_cao_cham_cong.tree</field>
+        <field name="model">bao_cao_cham_cong</field>
+        <field name="arch" type="xml">
+            <tree string="Báo cáo chấm công">
+                <field name="nhan_vien_id"/>
+                <field name="phong_ban_id"/>
+                <field name="thang"/>
+                <field name="nam"/>
+                <field name="tong_ngay_cong"/>
+                <field name="ngay_di_tre"/>
+                <field name="ngay_ve_som"/>
+                <field name="ngay_nghi_co_phep"/>
+                <field name="ngay_nghi_khong_phep"/>
+                <field name="tong_gio_lam"/>
+                <field name="tong_gio_tang_ca"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View - Báo cáo chấm công -->
+    <record id="view_bao_cao_cham_cong_form" model="ir.ui.view">
+        <field name="name">bao_cao_cham_cong.form</field>
+        <field name="model">bao_cao_cham_cong</field>
+        <field name="arch" type="xml">
+            <form string="Báo cáo chấm công">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="nhan_vien_id"/>
+                            <field name="phong_ban_id"/>
+                        </group>
+                        <group>
+                            <field name="thang"/>
+                            <field name="nam"/>
+                        </group>
+                    </group>
+                    <group string="Thống kê công">
+                        <group>
+                            <field name="tong_ngay_cong"/>
+                            <field name="ngay_di_tre"/>
+                            <field name="ngay_ve_som"/>
+                        </group>
+                        <group>
+                            <field name="ngay_nghi_co_phep"/>
+                            <field name="ngay_nghi_khong_phep"/>
+                        </group>
+                    </group>
+                    <group string="Thống kê giờ">
+                        <group>
+                            <field name="tong_gio_lam"/>
+                        </group>
+                        <group>
+                            <field name="tong_gio_tang_ca"/>
+                        </group>
+                    </group>
+                    <group string="Ghi chú">
+                        <field name="ghi_chu" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View - Báo cáo chấm công -->
+    <record id="view_bao_cao_cham_cong_search" model="ir.ui.view">
+        <field name="name">bao_cao_cham_cong.search</field>
+        <field name="model">bao_cao_cham_cong</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm báo cáo">
+                <field name="nhan_vien_id"/>
+                <field name="phong_ban_id"/>
+                <field name="thang"/>
+                <field name="nam"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Nhân viên" name="group_nhan_vien" context="{'group_by':'nhan_vien_id'}"/>
+                    <filter string="Phòng ban" name="group_phong_ban" context="{'group_by':'phong_ban_id'}"/>
+                    <filter string="Tháng" name="group_thang" context="{'group_by':'thang'}"/>
+                    <filter string="Năm" name="group_nam" context="{'group_by':'nam'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action - Báo cáo chấm công -->
+    <record id="action_bao_cao_cham_cong" model="ir.actions.act_window">
+        <field name="name">Báo cáo chấm công</field>
+        <field name="res_model">bao_cao_cham_cong</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo báo cáo chấm công tháng
+            </p>
+            <p>
+                Tổng hợp báo cáo chấm công theo tháng cho từng nhân viên.
+            </p>
+        </field>
+    </record>
+
+</odoo>

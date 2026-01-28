@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+=======
+from odoo import models, fields, api
+>>>>>>> cc63fe88 (update)
 
 
 class ChucVu(models.Model):
     _name = 'chuc_vu'
+<<<<<<< HEAD
     _description = 'Chức vụ'
     _rec_name = 'ten_chuc_vu'
     _order = 'ma_dinh_danh asc'
@@ -78,3 +83,50 @@ class ChucVu(models.Model):
         for record in self:
             if record.luong_co_ban and record.luong_co_ban < 0:
                 raise ValidationError('Lương cơ bản phải lớn hơn 0!')
+=======
+    _description = 'Chức vụ trong tổ chức'
+    _rec_name = 'ten_chuc_vu'
+    _order = 'cap_bac desc, ma_chuc_vu'
+
+    ma_chuc_vu = fields.Char(string='Mã chức vụ', required=True)
+    ten_chuc_vu = fields.Char(string='Tên chức vụ', required=True)
+    mo_ta = fields.Text(string='Mô tả')
+    cap_bac = fields.Integer(string='Cấp bậc', default=1, help='Cấp bậc càng cao thì chức vụ càng lớn')
+    luong_co_ban = fields.Float(string='Lương cơ bản')
+    phu_cap = fields.Float(string='Phụ cấp chức vụ')
+    nhan_vien_ids = fields.One2many('nhan_vien', 'chuc_vu_id', string='Danh sách nhân viên')
+    so_nhan_vien = fields.Integer(string='Số nhân viên', compute='_compute_so_nhan_vien')
+    active = fields.Boolean(string='Hoạt động', default=True)
+    
+    # Relationships - Liên kết với các models khác
+    bang_luong_ids = fields.One2many('bang_luong', 'chuc_vu_id', string='Bảng lương theo chức vụ')
+    
+    # Computed fields - Thống kê
+    trung_binh_luong_thuc_linh = fields.Float(string='TB lương thực lĩnh', compute='_compute_thong_ke_chuc_vu')
+    
+    @api.depends('nhan_vien_ids')
+    def _compute_so_nhan_vien(self):
+        for record in self:
+            record.so_nhan_vien = len(record.nhan_vien_ids)
+    
+    @api.depends('bang_luong_ids')
+    def _compute_thong_ke_chuc_vu(self):
+        """Tính toán thống kê cho chức vụ"""
+        for record in self:
+            today = fields.Date.today()
+            thang = today.month
+            nam = today.year
+            
+            # Trung bình lương thực lĩnh tháng này
+            bang_luong_thang_nay = record.bang_luong_ids.filtered(
+                lambda r: r.thang == thang and r.nam == nam
+            )
+            if bang_luong_thang_nay:
+                record.trung_binh_luong_thuc_linh = sum(bang_luong_thang_nay.mapped('thuc_linh')) / len(bang_luong_thang_nay)
+            else:
+                record.trung_binh_luong_thuc_linh = 0
+    
+    _sql_constraints = [
+        ('ma_chuc_vu_unique', 'UNIQUE(ma_chuc_vu)', 'Mã chức vụ phải là duy nhất!')
+    ]
+>>>>>>> cc63fe88 (update)

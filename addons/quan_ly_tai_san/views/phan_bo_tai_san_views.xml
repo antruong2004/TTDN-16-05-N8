@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_phan_bo_tai_san_tree" model="ir.ui.view">
+        <field name="name">phan.bo.tai.san.tree</field>
+        <field name="model">phan_bo_tai_san</field>
+        <field name="arch" type="xml">
+            <tree string="Phân bổ tài sản">
+                <field name="tai_san_id"/>
+                <field name="phong_ban_id"/>
+                <field name="nhan_vien_id"/>
+                <field name="ngay_phan_bo"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_phan_bo_tai_san_form" model="ir.ui.view">
+        <field name="name">phan.bo.tai.san.form</field>
+        <field name="model">phan_bo_tai_san</field>
+        <field name="arch" type="xml">
+            <form string="Phân bổ tài sản">
+                <sheet>
+                    <group>
+                        <field name="tai_san_id"/>
+                        <field name="phong_ban_id"/>
+                        <field name="nhan_vien_id"/>
+                        <field name="ngay_phan_bo"/>
+                        <field name="ngay_thu_hoi"/>
+                        <field name="trang_thai"/>
+                    </group>
+                    <group>
+                        <field name="ly_do"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_phan_bo_tai_san" model="ir.actions.act_window">
+        <field name="name">Phân bổ tài sản</field>
+        <field name="res_model">phan_bo_tai_san</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

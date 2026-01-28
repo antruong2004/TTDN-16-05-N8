@@ -1,3 +1,16 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+<<<<<<< HEAD
 access_tai_khoan_ke_toan,access.tai.khoan.ke.toan,model_tai_khoan_ke_toan,base.group_user,1,1,1,1
 access_so_cai,access.so.cai,model_so_cai,base.group_user,1,1,1,1
+=======
+access_tai_khoan_user,access_tai_khoan_user,model_ke_toan_tai_khoan,base.group_user,1,0,0,0
+access_tai_khoan_manager,access_tai_khoan_manager,model_ke_toan_tai_khoan,base.group_system,1,1,1,1
+access_ky_ke_toan_user,access_ky_ke_toan_user,model_ke_toan_ky,base.group_user,1,0,0,0
+access_ky_ke_toan_manager,access_ky_ke_toan_manager,model_ke_toan_ky,base.group_system,1,1,1,1
+access_so_cai_user,access_so_cai_user,model_ke_toan_so_cai,base.group_user,1,0,0,0
+access_so_cai_manager,access_so_cai_manager,model_ke_toan_so_cai,base.group_system,1,1,1,1
+access_but_toan_user,access_but_toan_user,model_ke_toan_but_toan,base.group_user,1,1,1,0
+access_but_toan_manager,access_but_toan_manager,model_ke_toan_but_toan,base.group_system,1,1,1,1
+access_but_toan_chi_tiet_user,access_but_toan_chi_tiet_user,model_ke_toan_but_toan_chi_tiet,base.group_user,1,1,1,0
+access_but_toan_chi_tiet_manager,access_but_toan_chi_tiet_manager,model_ke_toan_but_toan_chi_tiet,base.group_system,1,1,1,1
+>>>>>>> cc63fe88 (update)

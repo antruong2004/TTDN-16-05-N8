@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_so_cai_tree" model="ir.ui.view">
+        <field name="name">ke.toan.so.cai.tree</field>
+        <field name="model">ke_toan.so_cai</field>
+        <field name="arch" type="xml">
+            <tree string="Sổ cái">
+                <field name="ky_ke_toan_id"/>
+                <field name="tai_khoan_id"/>
+                <field name="so_du_dau_ky_no"/>
+                <field name="so_du_dau_ky_co"/>
+                <field name="phat_sinh_no" sum="Tổng PS Nợ"/>
+                <field name="phat_sinh_co" sum="Tổng PS Có"/>
+                <field name="so_du_cuoi_ky_no" sum="Tổng Dư Nợ"/>
+                <field name="so_du_cuoi_ky_co" sum="Tổng Dư Có"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_so_cai_form" model="ir.ui.view">
+        <field name="name">ke.toan.so.cai.form</field>
+        <field name="model">ke_toan.so_cai</field>
+        <field name="arch" type="xml">
+            <form string="Sổ cái">
+                <sheet>
+                    <group>
+                        <group string="Thông tin">
+                            <field name="ky_ke_toan_id"/>
+                            <field name="tai_khoan_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Số dư đầu kỳ">
+                            <field name="so_du_dau_ky_no"/>
+                            <field name="so_du_dau_ky_co"/>
+                        </group>
+                        <group string="Phát sinh trong kỳ">
+                            <field name="phat_sinh_no"/>
+                            <field name="phat_sinh_co"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Số dư cuối kỳ">
+                            <field name="so_du_cuoi_ky_no"/>
+                            <field name="so_du_cuoi_ky_co"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_so_cai_search" model="ir.ui.view">
+        <field name="name">ke.toan.so.cai.search</field>
+        <field name="model">ke_toan.so_cai</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm sổ cái">
+                <field name="tai_khoan_id"/>
+                <field name="ky_ke_toan_id"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Tài khoản" name="group_tk" context="{'group_by': 'tai_khoan_id'}"/>
+                    <filter string="Kỳ kế toán" name="group_ky" context="{'group_by': 'ky_ke_toan_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_so_cai" model="ir.actions.act_window">
+        <field name="name">Sổ cái</field>
+        <field name="res_model">ke_toan.so_cai</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_so_cai_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Sổ cái sẽ được tạo tự động khi có bút toán
+            </p>
+        </field>
+    </record>
+</odoo>

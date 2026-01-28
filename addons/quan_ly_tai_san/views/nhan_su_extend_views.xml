@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 
+    Các view kế thừa sẽ được bật sau khi upgrade module thành công lần đầu.
+    Chạy upgrade module lần 2 sau khi uncomment các view bên dưới.
+    -->
+    
+    <!-- Inherit Nhân viên Form - Thêm tab Tài sản -->
+    <!--
+    <record id="view_nhan_vien_form_inherit_tai_san" model="ir.ui.view">
+        <field name="name">nhan.vien.form.inherit.tai.san</field>
+        <field name="model">nhan_vien</field>
+        <field name="inherit_id" ref="nhan_su.view_nhan_vien_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Tài sản" name="tab_tai_san">
+                    <group>
+                        <group string="Thống kê tài sản">
+                            <field name="so_tai_san_dang_quan_ly"/>
+                            <field name="tong_gia_tri_tai_san_quan_ly" widget="monetary"/>
+                            <field name="so_tai_san_dang_muon"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Tài sản đang quản lý" name="tai_san_quan_ly">
+                            <field name="tai_san_quan_ly_ids" readonly="1">
+                                <tree string="Tài sản quản lý">
+                                    <field name="ma_tai_san"/>
+                                    <field name="ten_tai_san"/>
+                                    <field name="danh_muc_id"/>
+                                    <field name="nguyen_gia" widget="monetary"/>
+                                    <field name="gia_tri_con_lai" widget="monetary"/>
+                                    <field name="trang_thai"/>
+                                </tree>
+                            </field>
+                        </page>
+                        
+                        <page string="Lịch sử phân bổ" name="lich_su_phan_bo">
+                            <field name="phan_bo_tai_san_ids" readonly="1">
+                                <tree string="Lịch sử phân bổ">
+                                    <field name="tai_san_id"/>
+                                    <field name="ngay_phan_bo"/>
+                                    <field name="ngay_ket_thuc"/>
+                                    <field name="trang_thai"/>
+                                </tree>
+                            </field>
+                        </page>
+                        
+                        <page string="Lịch sử mượn tài sản" name="lich_su_muon">
+                            <field name="muon_tai_san_ids" readonly="1">
+                                <tree string="Lịch sử mượn">
+                                    <field name="tai_san_id"/>
+                                    <field name="ngay_muon"/>
+                                    <field name="ngay_tra_du_kien"/>
+                                    <field name="ngay_tra_thuc_te"/>
+                                    <field name="trang_thai"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    -->
+
+    <!-- Inherit Nhân viên Tree - Thêm cột tài sản -->
+    <!--
+    <record id="view_nhan_vien_tree_inherit_tai_san" model="ir.ui.view">
+        <field name="name">nhan.vien.tree.inherit.tai.san</field>
+        <field name="model">nhan_vien</field>
+        <field name="inherit_id" ref="nhan_su.view_nhan_vien_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="so_tai_san_dang_quan_ly" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+    -->
+
+    <!-- Inherit Phòng ban Form - Thêm tab Tài sản -->
+    <!--
+    <record id="view_phong_ban_form_inherit_tai_san" model="ir.ui.view">
+        <field name="name">phong.ban.form.inherit.tai.san</field>
+        <field name="model">phong_ban</field>
+        <field name="inherit_id" ref="nhan_su.view_phong_ban_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Tài sản" name="tab_tai_san_pb">
+                    <group>
+                        <group string="Thống kê tài sản">
+                            <field name="so_tai_san_phong_ban"/>
+                            <field name="so_tai_san_dang_su_dung_pb"/>
+                            <field name="so_tai_san_can_bao_tri"/>
+                            <field name="tong_gia_tri_tai_san_pb" widget="monetary"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Danh sách tài sản" name="ds_tai_san_pb">
+                            <field name="tai_san_phong_ban_ids" readonly="1">
+                                <tree string="Tài sản phòng ban">
+                                    <field name="ma_tai_san"/>
+                                    <field name="ten_tai_san"/>
+                                    <field name="danh_muc_id"/>
+                                    <field name="nguoi_quan_ly_id"/>
+                                    <field name="nguyen_gia" widget="monetary"/>
+                                    <field name="gia_tri_con_lai" widget="monetary"/>
+                                    <field name="trang_thai"/>
+                                </tree>
+                            </field>
+                        </page>
+                        
+                        <page string="Lịch sử phân bổ" name="lich_su_phan_bo_pb">
+                            <field name="phan_bo_tai_san_phong_ban_ids" readonly="1">
+                                <tree string="Lịch sử phân bổ">
+                                    <field name="tai_san_id"/>
+                                    <field name="nhan_vien_id"/>
+                                    <field name="ngay_phan_bo"/>
+                                    <field name="ngay_ket_thuc"/>
+                                    <field name="trang_thai"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    -->
+
+    <!-- Inherit Phòng ban Tree - Thêm cột tài sản -->
+    <!--
+    <record id="view_phong_ban_tree_inherit_tai_san" model="ir.ui.view">
+        <field name="name">phong.ban.tree.inherit.tai.san</field>
+        <field name="model">phong_ban</field>
+        <field name="inherit_id" ref="nhan_su.view_phong_ban_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="so_tai_san_phong_ban" optional="hide"/>
+                <field name="so_tai_san_dang_su_dung_pb" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+    -->
+</odoo>

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+<<<<<<< HEAD
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 import re
@@ -162,3 +163,105 @@ class TaiKhoanKeToan(models.Model):
                     raise ValidationError(_(
                         'Mã tài khoản con phải bắt đầu bằng mã tài khoản cha!'
                     ))
+=======
+from odoo import models, fields, api
+
+
+class TaiKhoanKeToan(models.Model):
+    """Hệ thống tài khoản kế toán theo chuẩn Việt Nam"""
+    _name = 'ke_toan.tai_khoan'
+    _description = 'Tài khoản kế toán'
+    _rec_name = 'display_name'
+    _order = 'ma_tai_khoan'
+    _parent_name = 'parent_id'
+    _parent_store = True
+
+    ma_tai_khoan = fields.Char(string='Mã tài khoản', required=True, copy=False, index=True)
+    ten_tai_khoan = fields.Char(string='Tên tài khoản', required=True)
+    display_name = fields.Char(string='Tên hiển thị', compute='_compute_display_name', store=True)
+    
+    loai_tai_khoan = fields.Selection([
+        ('tai_san', 'Tài sản'),
+        ('no_phai_tra', 'Nợ phải trả'),
+        ('von_chu_so_huu', 'Vốn chủ sở hữu'),
+        ('doanh_thu', 'Doanh thu'),
+        ('chi_phi', 'Chi phí'),
+    ], string='Loại tài khoản', required=True)
+    
+    nhom_tai_khoan = fields.Selection([
+        # Loại 1: Tài sản
+        ('tien', 'Tiền và tương đương tiền'),
+        ('phai_thu', 'Phải thu'),
+        ('hang_ton_kho', 'Hàng tồn kho'),
+        ('tai_san_co_dinh', 'Tài sản cố định'),
+        ('tai_san_khac', 'Tài sản khác'),
+        # Loại 2: Nợ phải trả
+        ('phai_tra', 'Phải trả'),
+        ('vay', 'Vay và nợ thuê tài chính'),
+        # Loại 3: Vốn chủ sở hữu
+        ('von', 'Vốn và quỹ'),
+        # Loại 4: Doanh thu
+        ('doanh_thu_ban_hang', 'Doanh thu bán hàng'),
+        ('doanh_thu_tai_chinh', 'Doanh thu tài chính'),
+        ('doanh_thu_khac', 'Doanh thu khác'),
+        # Loại 5: Chi phí
+        ('gia_von', 'Giá vốn hàng bán'),
+        ('chi_phi_ban_hang', 'Chi phí bán hàng'),
+        ('chi_phi_quan_ly', 'Chi phí quản lý'),
+        ('chi_phi_tai_chinh', 'Chi phí tài chính'),
+        ('chi_phi_khac', 'Chi phí khác'),
+        ('chi_phi_nhan_su', 'Chi phí nhân sự'),
+        ('chi_phi_khau_hao', 'Chi phí khấu hao'),
+    ], string='Nhóm tài khoản')
+    
+    tinh_chat = fields.Selection([
+        ('no', 'Dư Nợ'),
+        ('co', 'Dư Có'),
+        ('luong_tinh', 'Lưỡng tính'),
+    ], string='Tính chất', default='no', required=True)
+    
+    # Phân cấp tài khoản
+    parent_id = fields.Many2one('ke_toan.tai_khoan', string='Tài khoản cha', ondelete='restrict')
+    parent_path = fields.Char(index=True)
+    child_ids = fields.One2many('ke_toan.tai_khoan', 'parent_id', string='Tài khoản con')
+    cap_tai_khoan = fields.Integer(string='Cấp tài khoản', compute='_compute_cap_tai_khoan', store=True)
+    
+    # Cờ đánh dấu
+    la_tai_khoan_tong_hop = fields.Boolean(string='Là TK tổng hợp', default=False,
+                                            help='Tài khoản tổng hợp không được ghi nhận trực tiếp')
+    cho_phep_ghi_so = fields.Boolean(string='Cho phép ghi sổ', default=True)
+    active = fields.Boolean(string='Đang sử dụng', default=True)
+    
+    # Thống kê
+    so_du_no = fields.Float(string='Số dư Nợ', compute='_compute_so_du', store=True)
+    so_du_co = fields.Float(string='Số dư Có', compute='_compute_so_du', store=True)
+    but_toan_ids = fields.One2many('ke_toan.but_toan_chi_tiet', 'tai_khoan_id', string='Bút toán')
+    
+    mo_ta = fields.Text(string='Mô tả')
+
+    @api.depends('ma_tai_khoan', 'ten_tai_khoan')
+    def _compute_display_name(self):
+        for record in self:
+            record.display_name = f"{record.ma_tai_khoan} - {record.ten_tai_khoan}"
+
+    @api.depends('ma_tai_khoan')
+    def _compute_cap_tai_khoan(self):
+        for record in self:
+            record.cap_tai_khoan = len(record.ma_tai_khoan) if record.ma_tai_khoan else 0
+
+    @api.depends('but_toan_ids.so_tien_no', 'but_toan_ids.so_tien_co')
+    def _compute_so_du(self):
+        for record in self:
+            tong_no = sum(record.but_toan_ids.filtered(
+                lambda b: b.but_toan_id.trang_thai == 'da_ghi_so'
+            ).mapped('so_tien_no'))
+            tong_co = sum(record.but_toan_ids.filtered(
+                lambda b: b.but_toan_id.trang_thai == 'da_ghi_so'
+            ).mapped('so_tien_co'))
+            record.so_du_no = tong_no
+            record.so_du_co = tong_co
+
+    _sql_constraints = [
+        ('ma_tai_khoan_unique', 'unique(ma_tai_khoan)', 'Mã tài khoản phải duy nhất!')
+    ]
+>>>>>>> cc63fe88 (update)

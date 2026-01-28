@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_khau_hao_tree" model="ir.ui.view">
+        <field name="name">khau.hao.tree</field>
+        <field name="model">khau_hao</field>
+        <field name="arch" type="xml">
+            <tree string="Khấu hao" decoration-success="trang_thai=='da_ghi_nhan'" 
+                  decoration-warning="trang_thai=='nhap'" decoration-muted="trang_thai=='huy'">
+                <field name="ma_khau_hao"/>
+                <field name="tai_san_id"/>
+                <field name="ngay_khau_hao"/>
+                <field name="gia_tri_khau_hao" sum="Tổng khấu hao"/>
+                <field name="gia_tri_con_lai"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_khau_hao_form" model="ir.ui.view">
+        <field name="name">khau.hao.form</field>
+        <field name="model">khau_hao</field>
+        <field name="arch" type="xml">
+            <form string="Khấu hao">
+                <header>
+                    <button name="action_ghi_nhan" type="object" string="Ghi nhận khấu hao" 
+                            class="btn-primary" attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}"/>
+                    <button name="action_huy" type="object" string="Hủy" 
+                            class="btn-danger" attrs="{'invisible': [('trang_thai', '=', 'huy')]}"
+                            confirm="Bạn có chắc chắn muốn hủy khấu hao này?"/>
+                    <field name="trang_thai" widget="statusbar" statusbar_visible="nhap,da_ghi_nhan"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_tai_san)d" type="action" 
+                                class="oe_stat_button" icon="fa-cubes"
+                                context="{'default_id': tai_san_id}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Xem</span>
+                                <span class="o_stat_text">Tài sản</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="ma_khau_hao"/>
+                            <field name="tai_san_id"/>
+                            <field name="ngay_khau_hao"/>
+                            <field name="thang_khau_hao"/>
+                            <field name="nam_khau_hao"/>
+                        </group>
+                        <group>
+                            <field name="gia_tri_khau_hao"/>
+                            <field name="gia_tri_con_lai"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="ghi_chu" placeholder="Ghi chú về khấu hao..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_khau_hao" model="ir.actions.act_window">
+        <field name="name">Khấu hao</field>
+        <field name="res_model">khau_hao</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Báo cáo tổng hợp - Placeholder -->
+    <!-- Các báo cáo sẽ được phát triển thêm -->
+    
+    <!-- Action Báo cáo sổ cái theo TK -->
+    <record id="action_bao_cao_so_cai" model="ir.actions.act_window">
+        <field name="name">Báo cáo Sổ cái</field>
+        <field name="res_model">ke_toan.so_cai</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_group_tk': 1}</field>
+    </record>
+    
+    <!-- Action Báo cáo bút toán theo kỳ -->
+    <record id="action_bao_cao_but_toan" model="ir.actions.act_window">
+        <field name="name">Báo cáo Bút toán</field>
+        <field name="res_model">ke_toan.but_toan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('trang_thai', '=', 'da_ghi_so')]</field>
+        <field name="context">{'search_default_group_ky': 1}</field>
+    </record>
+</odoo>

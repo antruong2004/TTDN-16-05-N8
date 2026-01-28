@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cham_cong_user,access_cham_cong_user,model_cham_cong,base.group_user,1,1,1,1
+access_bao_cao_cham_cong_user,access_bao_cao_cham_cong_user,model_bao_cao_cham_cong,base.group_user,1,1,1,1
+access_bang_luong_user,access_bang_luong_user,model_bang_luong,base.group_user,1,1,1,1
+access_chi_tiet_phu_cap_user,access_chi_tiet_phu_cap_user,model_chi_tiet_phu_cap,base.group_user,1,1,1,1
+access_chi_tiet_khau_tru_user,access_chi_tiet_khau_tru_user,model_chi_tiet_khau_tru,base.group_user,1,1,1,1

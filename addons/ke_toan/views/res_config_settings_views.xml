@@ -1,0 +1,166 @@
+<odoo>
+    <data>
+        <!-- Cấu hình view cho Settings -->
+        <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.ke_toan</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Kế Toán" data-key="ke_toan" groups="base.group_system">
+                        <h2>Cấu Hình Tài Khoản Kế Toán</h2>
+                        
+                        <div class="row mt16 o_settings_container">
+                            <!-- Tài khoản tài sản -->
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="tk_nguyen_gia_mac_dinh_id"/>
+                                    <div class="text-muted">
+                                        Tài khoản ghi nhận nguyên giá TSCĐ (211, 213...)
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="tk_nguyen_gia_mac_dinh_id" class="o_light_label"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="tk_khau_hao_mac_dinh_id"/>
+                                    <div class="text-muted">
+                                        Tài khoản ghi nhận khấu hao lũy kế (2141, 2143...)
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="tk_khau_hao_mac_dinh_id" class="o_light_label"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="tk_chi_phi_khau_hao_mac_dinh_id"/>
+                                    <div class="text-muted">
+                                        Tài khoản ghi nhận chi phí khấu hao (6274, 6414...)
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="tk_chi_phi_khau_hao_mac_dinh_id" class="o_light_label"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Tài khoản thanh lý -->
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="tk_thu_nhap_khac_id"/>
+                                    <div class="text-muted">
+                                        Tài khoản thu nhập khác (711)
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="tk_thu_nhap_khac_id" class="o_light_label"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="tk_chi_phi_khac_id"/>
+                                    <div class="text-muted">
+                                        Tài khoản chi phí khác (811)
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="tk_chi_phi_khac_id" class="o_light_label"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Tài khoản tiền -->
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="tk_tien_mat_mac_dinh_id"/>
+                                    <div class="text-muted">
+                                        Tài khoản tiền mặt (111)
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="tk_tien_mat_mac_dinh_id" class="o_light_label"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="tk_ngan_hang_mac_dinh_id"/>
+                                    <div class="text-muted">
+                                        Tài khoản ngân hàng (112)
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="tk_ngan_hang_mac_dinh_id" class="o_light_label"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h2>Cấu Hình Xử Lý Tự Động</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="tu_dong_tao_but_toan_khau_hao"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="tu_dong_tao_but_toan_khau_hao"/>
+                                    <div class="text-muted">
+                                        Tự động tạo bút toán kế toán khi ghi nhận khấu hao
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="tu_dong_duyet_but_toan_khau_hao"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="tu_dong_duyet_but_toan_khau_hao"/>
+                                    <div class="text-muted">
+                                        Tự động duyệt bút toán khấu hao (bỏ qua phê duyệt)
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="cho_phep_sua_tai_khoan_tai_san"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="cho_phep_sua_tai_khoan_tai_san"/>
+                                    <div class="text-muted">
+                                        Cho phép thay đổi tài khoản kế toán trên từng tài sản
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

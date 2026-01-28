@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_ky_ke_toan_tree" model="ir.ui.view">
+        <field name="name">ke.toan.ky.tree</field>
+        <field name="model">ke_toan.ky</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách kỳ kế toán" decoration-success="trang_thai=='mo'" 
+                  decoration-muted="trang_thai=='khoa'" decoration-warning="trang_thai=='dong'">
+                <field name="ten_ky"/>
+                <field name="loai_ky"/>
+                <field name="nam_tai_chinh"/>
+                <field name="ngay_bat_dau"/>
+                <field name="ngay_ket_thuc"/>
+                <field name="so_but_toan"/>
+                <field name="tong_phat_sinh_no" sum="Tổng Nợ"/>
+                <field name="tong_phat_sinh_co" sum="Tổng Có"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_ky_ke_toan_form" model="ir.ui.view">
+        <field name="name">ke.toan.ky.form</field>
+        <field name="model">ke_toan.ky</field>
+        <field name="arch" type="xml">
+            <form string="Kỳ kế toán">
+                <header>
+                    <button name="action_dong_ky" type="object" string="Đóng kỳ" 
+                            class="btn-primary" attrs="{'invisible': [('trang_thai', '!=', 'mo')]}"/>
+                    <button name="action_khoa_ky" type="object" string="Khóa kỳ" 
+                            class="btn-warning" attrs="{'invisible': [('trang_thai', '!=', 'dong')]}"/>
+                    <button name="action_mo_lai" type="object" string="Mở lại" 
+                            class="btn-secondary" attrs="{'invisible': [('trang_thai', 'not in', ['dong', 'khoa'])]}"/>
+                    <field name="trang_thai" widget="statusbar" statusbar_visible="mo,dong,khoa"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ten_ky" placeholder="Tên kỳ kế toán"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Thông tin kỳ">
+                            <field name="loai_ky"/>
+                            <field name="nam_tai_chinh"/>
+                            <field name="thang" attrs="{'invisible': [('loai_ky', '!=', 'thang')]}"/>
+                            <field name="quy" attrs="{'invisible': [('loai_ky', '!=', 'quy')]}"/>
+                        </group>
+                        <group string="Thời gian">
+                            <field name="ngay_bat_dau"/>
+                            <field name="ngay_ket_thuc"/>
+                        </group>
+                    </group>
+                    <group string="Thống kê">
+                        <group>
+                            <field name="so_but_toan"/>
+                        </group>
+                        <group>
+                            <field name="tong_phat_sinh_no"/>
+                            <field name="tong_phat_sinh_co"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Ghi chú" name="notes">
+                            <field name="ghi_chu" placeholder="Ghi chú..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_ky_ke_toan_search" model="ir.ui.view">
+        <field name="name">ke.toan.ky.search</field>
+        <field name="model">ke_toan.ky</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm kỳ kế toán">
+                <field name="ten_ky"/>
+                <field name="nam_tai_chinh"/>
+                <separator/>
+                <filter string="Đang mở" name="mo" domain="[('trang_thai', '=', 'mo')]"/>
+                <filter string="Đã đóng" name="dong" domain="[('trang_thai', '=', 'dong')]"/>
+                <filter string="Đã khóa" name="khoa" domain="[('trang_thai', '=', 'khoa')]"/>
+                <separator/>
+                <filter string="Theo tháng" name="thang" domain="[('loai_ky', '=', 'thang')]"/>
+                <filter string="Theo quý" name="quy" domain="[('loai_ky', '=', 'quy')]"/>
+                <filter string="Theo năm" name="nam" domain="[('loai_ky', '=', 'nam')]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Năm" name="group_nam" context="{'group_by': 'nam_tai_chinh'}"/>
+                    <filter string="Loại kỳ" name="group_loai" context="{'group_by': 'loai_ky'}"/>
+                    <filter string="Trạng thái" name="group_tt" context="{'group_by': 'trang_thai'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ky_ke_toan" model="ir.actions.act_window">
+        <field name="name">Kỳ kế toán</field>
+        <field name="res_model">ke_toan.ky</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_ky_ke_toan_search"/>
+        <field name="context">{'search_default_mo': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo kỳ kế toán mới
+            </p>
+        </field>
+    </record>
+</odoo>

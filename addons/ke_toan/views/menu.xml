@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<<<<<<< HEAD
     <data>
 
         <!-- ============ MENU RIÊNG KẾ TOÁN ============ -->
@@ -44,4 +45,70 @@
             action="action_tai_khoan_ke_toan"/>
         
     </data>
+=======
+    <!-- Menu chính Kế toán -->
+    <menuitem id="menu_ke_toan_root"
+              name="Kế Toán"
+              sequence="30"/>
+
+    <!-- Menu cấp 1: Bút toán -->
+    <menuitem id="menu_but_toan"
+              name="Bút toán"
+              parent="menu_ke_toan_root"
+              sequence="10"/>
+    
+    <menuitem id="menu_but_toan_all"
+              name="Tất cả bút toán"
+              parent="menu_but_toan"
+              action="action_but_toan"
+              sequence="10"/>
+
+    <!-- Menu cấp 1: Sổ sách -->
+    <menuitem id="menu_so_sach"
+              name="Sổ sách"
+              parent="menu_ke_toan_root"
+              sequence="20"/>
+
+    <menuitem id="menu_so_cai"
+              name="Sổ cái"
+              parent="menu_so_sach"
+              action="action_so_cai"
+              sequence="10"/>
+
+    <!-- Menu cấp 1: Báo cáo -->
+    <menuitem id="menu_bao_cao"
+              name="Báo cáo"
+              parent="menu_ke_toan_root"
+              sequence="30"/>
+
+    <menuitem id="menu_bao_cao_so_cai"
+              name="Báo cáo Sổ cái"
+              parent="menu_bao_cao"
+              action="action_bao_cao_so_cai"
+              sequence="10"/>
+
+    <menuitem id="menu_bao_cao_but_toan"
+              name="Báo cáo Bút toán"
+              parent="menu_bao_cao"
+              action="action_bao_cao_but_toan"
+              sequence="20"/>
+
+    <!-- Menu cấp 1: Cấu hình -->
+    <menuitem id="menu_cau_hinh"
+              name="Cấu hình"
+              parent="menu_ke_toan_root"
+              sequence="100"/>
+
+    <menuitem id="menu_tai_khoan"
+              name="Hệ thống tài khoản"
+              parent="menu_cau_hinh"
+              action="action_tai_khoan_ke_toan"
+              sequence="10"/>
+
+    <menuitem id="menu_ky_ke_toan"
+              name="Kỳ kế toán"
+              parent="menu_cau_hinh"
+              action="action_ky_ke_toan"
+              sequence="20"/>
+>>>>>>> cc63fe88 (update)
 </odoo>

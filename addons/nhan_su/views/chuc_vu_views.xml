@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Chức vụ Tree View -->
+    <record id="view_chuc_vu_tree" model="ir.ui.view">
+        <field name="name">chuc_vu.tree</field>
+        <field name="model">chuc_vu</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách chức vụ">
+                <field name="ma_chuc_vu"/>
+                <field name="ten_chuc_vu"/>
+                <field name="cap_bac"/>
+                <field name="luong_co_ban" widget="monetary"/>
+                <field name="phu_cap" widget="monetary"/>
+                <field name="so_nhan_vien"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Chức vụ Form View -->
+    <record id="view_chuc_vu_form" model="ir.ui.view">
+        <field name="name">chuc_vu.form</field>
+        <field name="model">chuc_vu</field>
+        <field name="arch" type="xml">
+            <form string="Chức vụ">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object"
+                                class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                   options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ten_chuc_vu" placeholder="Tên chức vụ"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Thông tin cơ bản">
+                            <field name="ma_chuc_vu"/>
+                            <field name="cap_bac"/>
+                        </group>
+                        <group string="Lương thưởng">
+                            <field name="luong_co_ban"/>
+                            <field name="phu_cap"/>
+                            <!-- <field name="trung_binh_luong_thuc_linh" widget="monetary"/> -->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Nhân viên">
+                            <field name="nhan_vien_ids">
+                                <tree>
+                                    <field name="ma_dinh_danh"/>
+                                    <field name="ho_ten"/>
+                                    <field name="phong_ban_id"/>
+                                    <field name="email"/>
+                                    <field name="trang_thai"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <!-- <page string="Bảng lương">
+                            <field name="bang_luong_ids">
+                                <tree>
+                                    <field name="nhan_vien_id"/>
+                                    <field name="thang"/>
+                                    <field name="nam"/>
+                                    <field name="luong_co_ban"/>
+                                    <field name="thuc_linh"/>
+                                    <field name="trang_thai"/>
+                                </tree>
+                            </field>
+                        </page> -->
+                        <page string="Mô tả">
+                            <field name="mo_ta" nolabel="1" placeholder="Mô tả về chức vụ..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Chức vụ Search View -->
+    <record id="view_chuc_vu_search" model="ir.ui.view">
+        <field name="name">chuc_vu.search</field>
+        <field name="model">chuc_vu</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm chức vụ">
+                <field name="ma_chuc_vu"/>
+                <field name="ten_chuc_vu"/>
+                <filter string="Hoạt động" name="active" domain="[('active','=',True)]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Cấp bậc" name="group_cap_bac" context="{'group_by':'cap_bac'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Chức vụ Action -->
+    <record id="action_chuc_vu" model="ir.actions.act_window">
+        <field name="name">Chức vụ</field>
+        <field name="res_model">chuc_vu</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Thêm chức vụ mới
+            </p>
+            <p>Quản lý danh sách các chức vụ trong tổ chức</p>
+        </field>
+    </record>
+</odoo>

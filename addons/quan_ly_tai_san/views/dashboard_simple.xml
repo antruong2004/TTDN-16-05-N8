@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tai_san_dashboard_form" model="ir.ui.view">
+        <field name="name">tai_san.dashboard.form</field>
+        <field name="model">tai_san.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Dashboard" create="false" edit="false" delete="false">
+                <sheet>
+                    <field name="currency_id" invisible="1"/>
+                    <div style="background: #1a252f; padding: 18px 25px; margin: -16px -16px 25px -16px;">
+                        <h1 style="color: white; margin: 0; font-size: 22px; font-weight: 600;">BÁO CÁO QUẢN LÝ TÀI SẢN</h1>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-md-3">
+                            <div style="background: white; border: 1px solid #dee2e6; padding: 18px; min-height: 110px;">
+                                <small style="color: #6c757d; font-size: 11px; text-transform: uppercase;">Tỷ lệ sử dụng</small>
+                                <div><span style="font-size: 36px; font-weight: 300; color: #212529;"><field name="ty_le_su_dung" readonly="1"/></span><span style="font-size: 16px; color: #6c757d;">%</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div style="background: white; border: 1px solid #dee2e6; padding: 18px; min-height: 110px;">
+                                <small style="color: #6c757d; font-size: 11px; text-transform: uppercase;">Tỷ lệ khấu hao TB</small>
+                                <div><span style="font-size: 36px; font-weight: 300; color: #212529;"><field name="ty_le_khau_hao_tb" readonly="1"/></span><span style="font-size: 16px; color: #6c757d;">%</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div style="background: white; border: 1px solid #dee2e6; padding: 15px; min-height: 110px; text-align: center;">
+                                <small style="color: #6c757d; font-size: 11px; text-transform: uppercase;">Tổng giá trị tài sản</small>
+                                <div style="font-size: 22px; font-weight: 400; color: #dc3545; margin: 8px 0;"><field name="tong_gia_tri_ban_dau" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1"/></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div style="background: white; border: 1px solid #dee2e6; padding: 15px; min-height: 110px;">
+                                <small style="color: #6c757d; font-size: 11px; text-transform: uppercase;">Số lượng tài sản</small>
+                                <div class="row">
+                                    <div class="col-6"><div style="text-align: center; padding: 8px; background: #e3f2fd; border-radius: 6px;"><div style="font-size: 22px; font-weight: 600; color: #1976d2;"><field name="tong_tai_san" readonly="1"/></div><small style="color: #1976d2; font-size: 9px;">TỔNG</small></div></div>
+                                    <div class="col-6"><div style="text-align: center; padding: 8px; background: #e8f5e9; border-radius: 6px;"><div style="font-size: 22px; font-weight: 600; color: #388e3c;"><field name="tai_san_dang_dung" readonly="1"/></div><small style="color: #388e3c; font-size: 9px;">DÙNG</small></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-md-4">
+                            <div style="background: white; border: 1px solid #dee2e6; padding: 20px; text-align: center;">
+                                <small style="color: #6c757d; font-size: 11px; text-transform: uppercase;">Thời gian sử dụng TB (tháng)</small>
+                                <div style="font-size: 54px; font-weight: 300; color: #495057; margin: 15px 0;"><field name="thoi_gian_su_dung_tb" readonly="1"/></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="background: white; border: 1px solid #dee2e6; padding: 20px; text-align: center;">
+                                <small style="color: #6c757d; font-size: 11px; text-transform: uppercase;">Số ngày bảo hành TB</small>
+                                <div style="font-size: 54px; font-weight: 300; color: #28a745; margin: 15px 0;"><field name="so_ngay_bao_hanh_tb" readonly="1"/></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="background: white; border: 1px solid #dee2e6; padding: 20px; text-align: center;">
+                                <small style="color: #6c757d; font-size: 11px; text-transform: uppercase;">Thời gian đến thanh lý TB (tháng)</small>
+                                <div style="font-size: 54px; font-weight: 300; color: #fd7e14; margin: 15px 0;"><field name="thoi_gian_den_thanh_ly_tb" readonly="1"/></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-md-4">
+                            <div style="background: white; border: 1px solid #dee2e6; padding: 18px; min-height: 180px;">
+                                <small style="color: #6c757d; font-size: 11px; text-transform: uppercase;">Theo dõi bảo hành</small>
+                                <div style="margin-top: 15px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-3"><span style="color: #495057;">Còn bảo hành</span><span style="font-size: 18px; font-weight: 600; color: #28a745;"><field name="con_bao_hanh" readonly="1"/></span></div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3"><span style="color: #495057;">Sắp hết (30 ngày)</span><span style="font-size: 18px; font-weight: 600; color: #ffc107;"><field name="sap_het_bao_hanh" readonly="1"/></span></div>
+                                    <div class="d-flex justify-content-between align-items-center"><span style="color: #495057;">Hết bảo hành</span><span style="font-size: 18px; font-weight: 600; color: #dc3545;"><field name="het_bao_hanh" readonly="1"/></span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="background: white; border: 1px solid #dee2e6; padding: 18px; min-height: 180px;">
+                                <small style="color: #6c757d; font-size: 11px; text-transform: uppercase;">Tình trạng tài sản</small>
+                                <div style="margin-top: 15px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-2"><span style="color: #495057; font-size: 12px;">Tốt</span><span style="font-size: 15px; font-weight: 600; color: #28a745;"><field name="tinh_trang_tot" readonly="1"/></span></div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2"><span style="color: #495057; font-size: 12px;">Khá</span><span style="font-size: 15px; font-weight: 600; color: #17a2b8;"><field name="tinh_trang_kha" readonly="1"/></span></div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2"><span style="color: #495057; font-size: 12px;">Trung bình</span><span style="font-size: 15px; font-weight: 600; color: #ffc107;"><field name="tinh_trang_tb" readonly="1"/></span></div>
+                                    <div class="d-flex justify-content-between align-items-center"><span style="color: #495057; font-size: 12px;">Kém / Xuống cấp</span><span style="font-size: 15px; font-weight: 600; color: #dc3545;"><field name="tinh_trang_kem" readonly="1"/> / <field name="tinh_trang_xuong_cap" readonly="1"/></span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="background: white; border: 1px solid #dee2e6; padding: 18px; min-height: 180px;">
+                                <small style="color: #6c757d; font-size: 11px; text-transform: uppercase;">Chờ xử lý</small>
+                                <div style="margin-top: 15px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-3"><span style="color: #495057;">Mượn/Trả</span><span style="font-size: 18px; font-weight: 600; color: #007bff;"><field name="muon_tra_cho_duyet" readonly="1"/></span></div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3"><span style="color: #495057;">Thanh lý</span><span style="font-size: 18px; font-weight: 600; color: #6f42c1;"><field name="thanh_ly_cho_duyet" readonly="1"/></span></div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3"><span style="color: #495057;">Kiểm kê</span><span style="font-size: 18px; font-weight: 600; color: #20c997;"><field name="kiem_ke_dang_thuc_hien" readonly="1"/></span></div>
+                                    <div class="d-flex justify-content-between align-items-center"><span style="color: #495057;">Luân chuyển</span><span style="font-size: 18px; font-weight: 600; color: #fd7e14;"><field name="luan_chuyen_cho_duyet" readonly="1"/></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div style="background: white; border: 1px solid #dee2e6; padding: 18px;">
+                                <small style="color: #6c757d; font-size: 11px; text-transform: uppercase;">Trạng thái tài sản</small>
+                                <div style="margin-top: 15px;">
+                                    <div class="mb-3"><div class="d-flex justify-content-between mb-1"><span style="color: #495057; font-size: 12px;">Mới</span><span style="font-weight: 600;"><field name="tai_san_moi" readonly="1"/></span></div><div style="height: 6px; background: #e9ecef; border-radius: 3px; overflow: hidden;"><div style="height: 100%; width: 15%; background: #17a2b8;"/></div></div>
+                                    <div class="mb-3"><div class="d-flex justify-content-between mb-1"><span style="color: #495057; font-size: 12px;">Đang sử dụng</span><span style="font-weight: 600;"><field name="tai_san_dang_dung" readonly="1"/></span></div><div style="height: 6px; background: #e9ecef; border-radius: 3px; overflow: hidden;"><div style="height: 100%; width: 75%; background: #28a745;"/></div></div>
+                                    <div class="mb-3"><div class="d-flex justify-content-between mb-1"><span style="color: #495057; font-size: 12px;">Hỏng</span><span style="font-weight: 600;"><field name="tai_san_hong" readonly="1"/></span></div><div style="height: 6px; background: #e9ecef; border-radius: 3px; overflow: hidden;"><div style="height: 100%; width: 8%; background: #dc3545;"/></div></div>
+                                    <div><div class="d-flex justify-content-between mb-1"><span style="color: #495057; font-size: 12px;">Đã thanh lý</span><span style="font-weight: 600;"><field name="tai_san_thanh_ly" readonly="1"/></span></div><div style="height: 6px; background: #e9ecef; border-radius: 3px; overflow: hidden;"><div style="height: 100%; width: 5%; background: #6c757d;"/></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="background: white; border: 1px solid #dee2e6; padding: 18px;">
+                                <small style="color: #6c757d; font-size: 11px; text-transform: uppercase;">Xem biểu đồ chi tiết</small>
+                                <div class="row" style="margin-top: 15px;">
+                                    <div class="col-6 mb-3"><button name="%(quan_ly_tai_san.action_thong_ke_theo_loai)d" type="action" class="btn btn-outline-primary btn-block" style="padding: 12px; border-radius: 6px;"><i class="fa fa-pie-chart fa-lg"/> Theo danh mục</button></div>
+                                    <div class="col-6 mb-3"><button name="%(quan_ly_tai_san.action_thong_ke_theo_phong_ban)d" type="action" class="btn btn-outline-success btn-block" style="padding: 12px; border-radius: 6px;"><i class="fa fa-bar-chart fa-lg"/> Theo phòng ban</button></div>
+                                    <div class="col-6"><button name="%(quan_ly_tai_san.action_thong_ke_theo_trang_thai)d" type="action" class="btn btn-outline-warning btn-block" style="padding: 12px; border-radius: 6px;"><i class="fa fa-pie-chart fa-lg"/> Theo trạng thái</button></div>
+                                    <div class="col-6"><button name="%(quan_ly_tai_san.action_tai_san)d" type="action" class="btn btn-outline-info btn-block" style="padding: 12px; border-radius: 6px;"><i class="fa fa-list fa-lg"/> Danh sách</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_tai_san_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard Tài Sản</field>
+        <field name="res_model">tai_san.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="quan_ly_tai_san.dashboard_default"/>
+        <field name="target">inline</field>
+        <field name="context">{"form_view_initial_mode": "readonly"}</field>
+    </record>
+    <record id="view_thong_ke_loai_graph" model="ir.ui.view"><field name="name">tai_san.thong_ke_loai.graph</field><field name="model">tai_san.thong_ke_loai</field><field name="arch" type="xml"><graph string="Thống kê theo danh mục" type="pie"><field name="danh_muc_id"/><field name="so_luong" type="measure"/></graph></field></record>
+    <record id="view_thong_ke_loai_pivot" model="ir.ui.view"><field name="name">tai_san.thong_ke_loai.pivot</field><field name="model">tai_san.thong_ke_loai</field><field name="arch" type="xml"><pivot string="Thống kê theo danh mục"><field name="danh_muc_id" type="row"/><field name="so_luong" type="measure"/><field name="tong_gia_tri" type="measure"/><field name="gia_tri_con_lai" type="measure"/></pivot></field></record>
+    <record id="action_thong_ke_theo_loai" model="ir.actions.act_window"><field name="name">Thống kê theo danh mục</field><field name="res_model">tai_san.thong_ke_loai</field><field name="view_mode">graph,pivot</field></record>
+    <record id="view_thong_ke_phong_ban_graph" model="ir.ui.view"><field name="name">tai_san.thong_ke_phong_ban.graph</field><field name="model">tai_san.thong_ke_phong_ban</field><field name="arch" type="xml"><graph string="Thống kê theo phòng ban" type="bar"><field name="phong_ban_id"/><field name="so_luong" type="measure"/></graph></field></record>
+    <record id="view_thong_ke_phong_ban_pivot" model="ir.ui.view"><field name="name">tai_san.thong_ke_phong_ban.pivot</field><field name="model">tai_san.thong_ke_phong_ban</field><field name="arch" type="xml"><pivot string="Thống kê theo phòng ban"><field name="phong_ban_id" type="row"/><field name="so_luong" type="measure"/><field name="tong_gia_tri" type="measure"/></pivot></field></record>
+    <record id="action_thong_ke_theo_phong_ban" model="ir.actions.act_window"><field name="name">Thống kê theo phòng ban</field><field name="res_model">tai_san.thong_ke_phong_ban</field><field name="view_mode">graph,pivot</field></record>
+    <record id="view_thong_ke_trang_thai_graph" model="ir.ui.view"><field name="name">tai_san.thong_ke_trang_thai.graph</field><field name="model">tai_san.thong_ke_trang_thai</field><field name="arch" type="xml"><graph string="Thống kê theo trạng thái" type="pie"><field name="trang_thai"/><field name="so_luong" type="measure"/></graph></field></record>
+    <record id="action_thong_ke_theo_trang_thai" model="ir.actions.act_window"><field name="name">Thống kê theo trạng thái</field><field name="res_model">tai_san.thong_ke_trang_thai</field><field name="view_mode">graph,pivot</field></record>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_danh_muc_tai_san_tree" model="ir.ui.view">
+        <field name="name">danh.muc.tai.san.tree</field>
+        <field name="model">danh_muc_tai_san</field>
+        <field name="arch" type="xml">
+            <tree string="Danh mục tài sản">
+                <field name="ma_danh_muc"/>
+                <field name="ten_danh_muc"/>
+                <field name="thoi_gian_su_dung"/>
+                <field name="ty_le_khau_hao"/>
+                <field name="so_luong_tai_san"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_danh_muc_tai_san_form" model="ir.ui.view">
+        <field name="name">danh.muc.tai.san.form</field>
+        <field name="model">danh_muc_tai_san</field>
+        <field name="arch" type="xml">
+            <form string="Danh mục tài sản">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ma_danh_muc"/>
+                            <field name="ten_danh_muc"/>
+                            <field name="thoi_gian_su_dung"/>
+                            <field name="ty_le_khau_hao"/>
+                        </group>
+                        <group>
+                            <field name="so_luong_tai_san"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="mo_ta"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_danh_muc_tai_san" model="ir.actions.act_window">
+        <field name="name">Danh mục tài sản</field>
+        <field name="res_model">danh_muc_tai_san</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

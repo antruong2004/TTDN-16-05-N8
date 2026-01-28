@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Scheduled Action: Tính khấu hao tự động hàng tháng -->
+        <record id="ir_cron_khau_hao_tu_dong" model="ir.cron">
+            <field name="name">Tính khấu hao tài sản tự động</field>
+            <field name="model_id" ref="model_khau_hao"/>
+            <field name="state">code</field>
+            <field name="code">model.tao_khau_hao_tu_dong()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+            <field name="priority">5</field>
+            <field name="user_id" ref="base.user_admin"/>
+            <!-- Chạy vào ngày 28 hàng tháng lúc 23:00 -->
+            <field name="nextcall" eval="(DateTime.now() + relativedelta(day=28, hour=23, minute=0, second=0)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+        
+        <!-- Scheduled Action: Gửi thông báo tài sản sắp hết khấu hao -->
+        <record id="ir_cron_thong_bao_tai_san_het_khau_hao" model="ir.cron">
+            <field name="name">Thông báo tài sản sắp khấu hao xong</field>
+            <field name="model_id" ref="model_tai_san"/>
+            <field name="state">code</field>
+            <field name="code">
+# Tìm tài sản có tỷ lệ khấu hao >= 90%
+tai_san_sap_het = model.search([
+    ('ty_le_khau_hao_hien_tai', '>=', 90),
+    ('ty_le_khau_hao_hien_tai', '&lt;', 100),
+    ('trang_thai', '=', 'dang_su_dung'),
+])
+
+if tai_san_sap_het:
+    # Tạo thông báo
+    for tai_san in tai_san_sap_het:
+        tai_san.message_post(
+            body=f"Tài sản {tai_san.ten_tai_san} đã khấu hao {tai_san.ty_le_khau_hao_hien_tai:.1f}% giá trị ban đầu. Vui lòng xem xét thanh lý hoặc nâng cấp.",
+            subject="Thông báo: Tài sản sắp khấu hao xong",
+            message_type='notification',
+        )
+    log(f"Đã gửi thông báo cho {len(tai_san_sap_het)} tài sản sắp hết khấu hao")
+            </field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+            <field name="priority">10</field>
+            <field name="user_id" ref="base.user_admin"/>
+            <!-- Chạy vào ngày 1 hàng tháng lúc 08:00 -->
+            <field name="nextcall" eval="(DateTime.now() + relativedelta(day=1, hour=8, minute=0, second=0)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+        
+    </data>
+</odoo>

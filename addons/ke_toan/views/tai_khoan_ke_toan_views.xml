@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_tai_khoan_ke_toan_tree" model="ir.ui.view">
+        <field name="name">ke.toan.tai.khoan.tree</field>
+        <field name="model">ke_toan.tai_khoan</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách tài khoản">
+                <field name="ma_tai_khoan"/>
+                <field name="ten_tai_khoan"/>
+                <field name="loai_tai_khoan"/>
+                <field name="nhom_tai_khoan" optional="show"/>
+                <field name="tinh_chat"/>
+                <field name="cap_tai_khoan" optional="hide"/>
+                <field name="la_tai_khoan_tong_hop"/>
+                <field name="cho_phep_ghi_so"/>
+                <field name="so_du_no" sum="Tổng Nợ" optional="show"/>
+                <field name="so_du_co" sum="Tổng Có" optional="show"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_tai_khoan_ke_toan_form" model="ir.ui.view">
+        <field name="name">ke.toan.tai.khoan.form</field>
+        <field name="model">ke_toan.tai_khoan</field>
+        <field name="arch" type="xml">
+            <form string="Tài khoản kế toán">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="display_name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Thông tin tài khoản">
+                            <field name="ma_tai_khoan"/>
+                            <field name="ten_tai_khoan"/>
+                            <field name="parent_id"/>
+                            <field name="cap_tai_khoan"/>
+                        </group>
+                        <group string="Phân loại">
+                            <field name="loai_tai_khoan"/>
+                            <field name="nhom_tai_khoan"/>
+                            <field name="tinh_chat"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Cấu hình">
+                            <field name="la_tai_khoan_tong_hop"/>
+                            <field name="cho_phep_ghi_so"/>
+                        </group>
+                        <group string="Số dư">
+                            <field name="so_du_no"/>
+                            <field name="so_du_co"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Tài khoản con" name="child_accounts">
+                            <field name="child_ids">
+                                <tree>
+                                    <field name="ma_tai_khoan"/>
+                                    <field name="ten_tai_khoan"/>
+                                    <field name="tinh_chat"/>
+                                    <field name="cho_phep_ghi_so"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Mô tả" name="description">
+                            <field name="mo_ta" placeholder="Mô tả tài khoản..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_tai_khoan_ke_toan_search" model="ir.ui.view">
+        <field name="name">ke.toan.tai.khoan.search</field>
+        <field name="model">ke_toan.tai_khoan</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm tài khoản">
+                <field name="ma_tai_khoan"/>
+                <field name="ten_tai_khoan"/>
+                <field name="display_name"/>
+                <separator/>
+                <filter string="Cho phép ghi sổ" name="cho_phep_ghi_so" domain="[('cho_phep_ghi_so', '=', True)]"/>
+                <filter string="TK tổng hợp" name="tong_hop" domain="[('la_tai_khoan_tong_hop', '=', True)]"/>
+                <separator/>
+                <filter string="Tài sản" name="tai_san" domain="[('loai_tai_khoan', '=', 'tai_san')]"/>
+                <filter string="Nợ phải trả" name="no_phai_tra" domain="[('loai_tai_khoan', '=', 'no_phai_tra')]"/>
+                <filter string="Vốn CSH" name="von" domain="[('loai_tai_khoan', '=', 'von_chu_so_huu')]"/>
+                <filter string="Doanh thu" name="doanh_thu" domain="[('loai_tai_khoan', '=', 'doanh_thu')]"/>
+                <filter string="Chi phí" name="chi_phi" domain="[('loai_tai_khoan', '=', 'chi_phi')]"/>
+                <separator/>
+                <filter string="Đã lưu trữ" name="archived" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Loại TK" name="group_loai" context="{'group_by': 'loai_tai_khoan'}"/>
+                    <filter string="Nhóm TK" name="group_nhom" context="{'group_by': 'nhom_tai_khoan'}"/>
+                    <filter string="Tính chất" name="group_tinh_chat" context="{'group_by': 'tinh_chat'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_tai_khoan_ke_toan" model="ir.actions.act_window">
+        <field name="name">Hệ thống tài khoản</field>
+        <field name="res_model">ke_toan.tai_khoan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_tai_khoan_ke_toan_search"/>
+        <field name="context">{'search_default_cho_phep_ghi_so': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo tài khoản kế toán mới
+            </p>
+            <p>
+                Hệ thống tài khoản kế toán theo chuẩn Việt Nam.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Tạo record dashboard mặc định -->
+        <record id="dashboard_default" model="tai_san.dashboard">
+            <field name="name">Dashboard Quản lý Tài sản</field>
+        </record>
+    </data>
+</odoo>

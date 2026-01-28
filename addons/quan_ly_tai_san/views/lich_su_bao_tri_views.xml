@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_lich_su_bao_tri_tree" model="ir.ui.view">
+        <field name="name">lich.su.bao.tri.tree</field>
+        <field name="model">lich_su_bao_tri</field>
+        <field name="arch" type="xml">
+            <tree string="Lịch sử bảo trì" decoration-success="trang_thai=='hoan_thanh'" 
+                  decoration-info="trang_thai=='dang_thuc_hien'" decoration-muted="trang_thai=='huy'">
+                <field name="ma_phieu"/>
+                <field name="tai_san_id"/>
+                <field name="ngay_bao_tri"/>
+                <field name="loai_bao_tri"/>
+                <field name="nguoi_thuc_hien"/>
+                <field name="chi_phi" sum="Tổng chi phí"/>
+                <field name="trang_thai"/>
+                <field name="danh_gia" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_lich_su_bao_tri_form" model="ir.ui.view">
+        <field name="name">lich.su.bao.tri.form</field>
+        <field name="model">lich_su_bao_tri</field>
+        <field name="arch" type="xml">
+            <form string="Bảo trì tài sản">
+                <header>
+                    <button name="action_bat_dau" string="Bắt đầu" type="object" class="btn-primary" 
+                            attrs="{'invisible': [('trang_thai', '!=', 'ke_hoach')]}"/>
+                    <button name="action_hoan_thanh" string="Hoàn thành" type="object" class="btn-success" 
+                            attrs="{'invisible': [('trang_thai', '!=', 'dang_thuc_hien')]}"/>
+                    <field name="trang_thai" widget="statusbar" statusbar_visible="ke_hoach,dang_thuc_hien,hoan_thanh"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="ma_phieu" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="tai_san_id"/>
+                            <field name="ngay_bao_tri"/>
+                            <field name="loai_bao_tri"/>
+                            <field name="nguoi_thuc_hien"/>
+                        </group>
+                        <group>
+                            <field name="don_vi_bao_tri"/>
+                            <field name="chi_phi"/>
+                            <field name="ngay_hoan_thanh"/>
+                            <field name="danh_gia"/>
+                        </group>
+                    </group>
+                    <group string="Nội dung bảo trì">
+                        <field name="noi_dung" nolabel="1" placeholder="Mô tả chi tiết công việc bảo trì..."/>
+                    </group>
+                    <group>
+                        <group string="Linh kiện thay thế">
+                            <field name="linh_kien_thay_the" nolabel="1"/>
+                        </group>
+                        <group string="Kết quả">
+                            <field name="ket_qua" nolabel="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="File đính kèm">
+                            <field name="file_dinh_kem_ids" widget="many2many_binary" nolabel="1"/>
+                        </page>
+                        <page string="Ghi chú">
+                            <field name="ghi_chu" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_lich_su_bao_tri" model="ir.actions.act_window">
+        <field name="name">Lịch sử bảo trì</field>
+        <field name="res_model">lich_su_bao_tri</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

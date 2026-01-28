@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View - Bút toán -->
+    <record id="view_but_toan_tree" model="ir.ui.view">
+        <field name="name">ke.toan.but.toan.tree</field>
+        <field name="model">ke_toan.but_toan</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách bút toán" decoration-success="trang_thai=='da_ghi_so'"
+                  decoration-warning="trang_thai=='cho_duyet'" decoration-muted="trang_thai=='huy'">
+                <field name="so_chung_tu"/>
+                <field name="ngay_chung_tu"/>
+                <field name="loai_chung_tu"/>
+                <field name="dien_giai"/>
+                <field name="ky_ke_toan_id" optional="show"/>
+                <field name="tong_no" sum="Tổng Nợ"/>
+                <field name="tong_co" sum="Tổng Có"/>
+                <field name="can_doi" invisible="1"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View - Bút toán -->
+    <record id="view_but_toan_form" model="ir.ui.view">
+        <field name="name">ke.toan.but.toan.form</field>
+        <field name="model">ke_toan.but_toan</field>
+        <field name="arch" type="xml">
+            <form string="Bút toán kế toán">
+                <header>
+                    <button name="action_gui_duyet" type="object" string="Gửi duyệt"
+                            class="btn-primary" attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}"/>
+                    <button name="action_duyet" type="object" string="Duyệt &amp; Ghi sổ"
+                            class="btn-success" attrs="{'invisible': [('trang_thai', '!=', 'cho_duyet')]}"/>
+                    <button name="action_huy" type="object" string="Hủy"
+                            class="btn-danger" attrs="{'invisible': [('trang_thai', 'not in', ['nhap', 'cho_duyet', 'da_ghi_so'])]}" confirm="Bạn có chắc chắn muốn hủy bút toán này?"/>
+                    <button name="action_nhap_lai" type="object" string="Về nháp"
+                            class="btn-secondary" attrs="{'invisible': [('trang_thai', 'not in', ['cho_duyet', 'huy'])]}"/>
+                    <field name="trang_thai" widget="statusbar" statusbar_visible="nhap,cho_duyet,da_ghi_so"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="so_chung_tu" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Thông tin chứng từ">
+                            <field name="ngay_chung_tu"/>
+                            <field name="loai_chung_tu"/>
+                            <field name="ky_ke_toan_id"/>
+                        </group>
+                        <group string="Liên kết">
+                            <field name="nhan_vien_id"/>
+                            <field name="tai_san_id"/>
+                            <field name="bang_luong_id" readonly="1"/>
+                            <field name="khau_hao_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="dien_giai" placeholder="Diễn giải nội dung bút toán..."/>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Chi tiết bút toán" name="chi_tiet">
+                            <field name="chi_tiet_ids" attrs="{'readonly': [('trang_thai', 'in', ['da_ghi_so', 'huy'])]}">
+                                <tree string="Chi tiết" editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="tai_khoan_id" options="{'no_create': True}"/>
+                                    <field name="ma_tai_khoan" optional="hide"/>
+                                    <field name="dien_giai"/>
+                                    <field name="so_tien_no" sum="Tổng Nợ"/>
+                                    <field name="so_tien_co" sum="Tổng Có"/>
+                                    <field name="doi_tuong_model" optional="hide"/>
+                                    <field name="doi_tuong_id" optional="hide"/>
+                                    <field name="doi_tuong_name" optional="hide"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer">
+                                <field name="tong_no" widget="monetary"/>
+                                <field name="tong_co" widget="monetary"/>
+                                <field name="chenh_lech" widget="monetary" 
+                                       attrs="{'invisible': [('can_doi', '=', True)]}"/>
+                                <field name="can_doi" invisible="1"/>
+                            </group>
+                        </page>
+                        <page string="Thông tin khác" name="other_info">
+                            <group>
+                                <group string="Người lập">
+                                    <field name="nguoi_lap_id"/>
+                                </group>
+                                <group string="Người duyệt">
+                                    <field name="nguoi_duyet_id"/>
+                                    <field name="ngay_duyet"/>
+                                </group>
+                            </group>
+                            <field name="ghi_chu" placeholder="Ghi chú..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_but_toan_search" model="ir.ui.view">
+        <field name="name">ke.toan.but.toan.search</field>
+        <field name="model">ke_toan.but_toan</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm bút toán">
+                <field name="so_chung_tu"/>
+                <field name="dien_giai"/>
+                <field name="nhan_vien_id"/>
+                <field name="tai_san_id"/>
+                <separator/>
+                <filter string="Nháp" name="nhap" domain="[('trang_thai', '=', 'nhap')]"/>
+                <filter string="Chờ duyệt" name="cho_duyet" domain="[('trang_thai', '=', 'cho_duyet')]"/>
+                <filter string="Đã ghi sổ" name="da_ghi_so" domain="[('trang_thai', '=', 'da_ghi_so')]"/>
+                <filter string="Đã hủy" name="huy" domain="[('trang_thai', '=', 'huy')]"/>
+                <separator/>
+                <filter string="Phiếu thu" name="thu" domain="[('loai_chung_tu', '=', 'thu')]"/>
+                <filter string="Phiếu chi" name="chi" domain="[('loai_chung_tu', '=', 'chi')]"/>
+                <filter string="Khấu hao" name="khau_hao" domain="[('loai_chung_tu', '=', 'khau_hao')]"/>
+                <filter string="Lương" name="luong" domain="[('loai_chung_tu', '=', 'luong')]"/>
+                <filter string="Mua sắm" name="mua_sam" domain="[('loai_chung_tu', '=', 'mua_sam')]"/>
+                <filter string="Thanh lý" name="thanh_ly" domain="[('loai_chung_tu', '=', 'thanh_ly')]"/>
+                <separator/>
+                <filter string="Tháng này" name="thang_nay" 
+                        domain="[('ngay_chung_tu', '&gt;=', (context_today() - relativedelta(day=1)).strftime('%Y-%m-%d')),
+                                 ('ngay_chung_tu', '&lt;', (context_today() + relativedelta(months=1, day=1)).strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Ngày" name="group_ngay" context="{'group_by': 'ngay_chung_tu'}"/>
+                    <filter string="Loại chứng từ" name="group_loai" context="{'group_by': 'loai_chung_tu'}"/>
+                    <filter string="Kỳ kế toán" name="group_ky" context="{'group_by': 'ky_ke_toan_id'}"/>
+                    <filter string="Trạng thái" name="group_tt" context="{'group_by': 'trang_thai'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_but_toan" model="ir.actions.act_window">
+        <field name="name">Bút toán</field>
+        <field name="res_model">ke_toan.but_toan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_but_toan_search"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo bút toán kế toán mới
+            </p>
+            <p>
+                Ghi nhận các nghiệp vụ kế toán với định khoản Nợ/Có.
+            </p>
+        </field>
+    </record>
+</odoo>

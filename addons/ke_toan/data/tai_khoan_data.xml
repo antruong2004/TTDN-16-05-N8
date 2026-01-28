@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- LOẠI 1: TÀI SẢN -->
+        <!-- TK 111 - Tiền mặt -->
+        <record id="tk_111" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">111</field>
+            <field name="ten_tai_khoan">Tiền mặt</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tien</field>
+            <field name="tinh_chat">no</field>
+            <field name="la_tai_khoan_tong_hop">True</field>
+            <field name="cho_phep_ghi_so">False</field>
+        </record>
+        <record id="tk_1111" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">1111</field>
+            <field name="ten_tai_khoan">Tiền Việt Nam</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tien</field>
+            <field name="tinh_chat">no</field>
+            <field name="parent_id" ref="tk_111"/>
+        </record>
+        
+        <!-- TK 112 - Tiền gửi ngân hàng -->
+        <record id="tk_112" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">112</field>
+            <field name="ten_tai_khoan">Tiền gửi ngân hàng</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tien</field>
+            <field name="tinh_chat">no</field>
+            <field name="la_tai_khoan_tong_hop">True</field>
+            <field name="cho_phep_ghi_so">False</field>
+        </record>
+        <record id="tk_1121" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">1121</field>
+            <field name="ten_tai_khoan">Tiền Việt Nam</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tien</field>
+            <field name="tinh_chat">no</field>
+            <field name="parent_id" ref="tk_112"/>
+        </record>
+        
+        <!-- TK 131 - Phải thu khách hàng -->
+        <record id="tk_131" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">131</field>
+            <field name="ten_tai_khoan">Phải thu của khách hàng</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">phai_thu</field>
+            <field name="tinh_chat">luong_tinh</field>
+        </record>
+        
+        <!-- TK 133 - Thuế GTGT được khấu trừ -->
+        <record id="tk_133" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">133</field>
+            <field name="ten_tai_khoan">Thuế GTGT được khấu trừ</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">phai_thu</field>
+            <field name="tinh_chat">no</field>
+        </record>
+        
+        <!-- TK 152 - Nguyên liệu, vật liệu -->
+        <record id="tk_152" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">152</field>
+            <field name="ten_tai_khoan">Nguyên liệu, vật liệu</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">hang_ton_kho</field>
+            <field name="tinh_chat">no</field>
+        </record>
+        
+        <!-- TK 211 - TSCĐ hữu hình -->
+        <record id="tk_211" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">211</field>
+            <field name="ten_tai_khoan">TSCĐ hữu hình</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tai_san_co_dinh</field>
+            <field name="tinh_chat">no</field>
+            <field name="la_tai_khoan_tong_hop">True</field>
+            <field name="cho_phep_ghi_so">False</field>
+        </record>
+        <record id="tk_2111" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">2111</field>
+            <field name="ten_tai_khoan">Nhà cửa, vật kiến trúc</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tai_san_co_dinh</field>
+            <field name="tinh_chat">no</field>
+            <field name="parent_id" ref="tk_211"/>
+        </record>
+        <record id="tk_2112" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">2112</field>
+            <field name="ten_tai_khoan">Máy móc, thiết bị</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tai_san_co_dinh</field>
+            <field name="tinh_chat">no</field>
+            <field name="parent_id" ref="tk_211"/>
+        </record>
+        <record id="tk_2113" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">2113</field>
+            <field name="ten_tai_khoan">Phương tiện vận tải</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tai_san_co_dinh</field>
+            <field name="tinh_chat">no</field>
+            <field name="parent_id" ref="tk_211"/>
+        </record>
+        <record id="tk_2114" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">2114</field>
+            <field name="ten_tai_khoan">Thiết bị văn phòng</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tai_san_co_dinh</field>
+            <field name="tinh_chat">no</field>
+            <field name="parent_id" ref="tk_211"/>
+        </record>
+        
+        <!-- TK 213 - TSCĐ vô hình -->
+        <record id="tk_213" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">213</field>
+            <field name="ten_tai_khoan">TSCĐ vô hình</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tai_san_co_dinh</field>
+            <field name="tinh_chat">no</field>
+            <field name="la_tai_khoan_tong_hop">True</field>
+            <field name="cho_phep_ghi_so">False</field>
+        </record>
+        <record id="tk_2131" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">2131</field>
+            <field name="ten_tai_khoan">Quyền sử dụng đất</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tai_san_co_dinh</field>
+            <field name="tinh_chat">no</field>
+            <field name="parent_id" ref="tk_213"/>
+        </record>
+        <record id="tk_2135" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">2135</field>
+            <field name="ten_tai_khoan">Phần mềm máy vi tính</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tai_san_co_dinh</field>
+            <field name="tinh_chat">no</field>
+            <field name="parent_id" ref="tk_213"/>
+        </record>
+        
+        <!-- TK 214 - Hao mòn TSCĐ -->
+        <record id="tk_214" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">214</field>
+            <field name="ten_tai_khoan">Hao mòn TSCĐ</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tai_san_co_dinh</field>
+            <field name="tinh_chat">co</field>
+            <field name="la_tai_khoan_tong_hop">True</field>
+            <field name="cho_phep_ghi_so">False</field>
+        </record>
+        <record id="tk_2141" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">2141</field>
+            <field name="ten_tai_khoan">Hao mòn TSCĐ hữu hình</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tai_san_co_dinh</field>
+            <field name="tinh_chat">co</field>
+            <field name="parent_id" ref="tk_214"/>
+        </record>
+        <record id="tk_2143" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">2143</field>
+            <field name="ten_tai_khoan">Hao mòn TSCĐ vô hình</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="nhom_tai_khoan">tai_san_co_dinh</field>
+            <field name="tinh_chat">co</field>
+            <field name="parent_id" ref="tk_214"/>
+        </record>
+        
+        <!-- LOẠI 3: NỢ PHẢI TRẢ -->
+        <!-- TK 331 - Phải trả người bán -->
+        <record id="tk_331" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">331</field>
+            <field name="ten_tai_khoan">Phải trả cho người bán</field>
+            <field name="loai_tai_khoan">no_phai_tra</field>
+            <field name="nhom_tai_khoan">phai_tra</field>
+            <field name="tinh_chat">co</field>
+        </record>
+        
+        <!-- TK 334 - Phải trả người lao động -->
+        <record id="tk_334" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">334</field>
+            <field name="ten_tai_khoan">Phải trả người lao động</field>
+            <field name="loai_tai_khoan">no_phai_tra</field>
+            <field name="nhom_tai_khoan">phai_tra</field>
+            <field name="tinh_chat">co</field>
+        </record>
+        
+        <!-- TK 338 - Phải trả, phải nộp khác -->
+        <record id="tk_338" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">338</field>
+            <field name="ten_tai_khoan">Phải trả, phải nộp khác</field>
+            <field name="loai_tai_khoan">no_phai_tra</field>
+            <field name="nhom_tai_khoan">phai_tra</field>
+            <field name="tinh_chat">co</field>
+            <field name="la_tai_khoan_tong_hop">True</field>
+            <field name="cho_phep_ghi_so">False</field>
+        </record>
+        <record id="tk_3383" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">3383</field>
+            <field name="ten_tai_khoan">BHXH</field>
+            <field name="loai_tai_khoan">no_phai_tra</field>
+            <field name="nhom_tai_khoan">phai_tra</field>
+            <field name="tinh_chat">co</field>
+            <field name="parent_id" ref="tk_338"/>
+        </record>
+        <record id="tk_3384" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">3384</field>
+            <field name="ten_tai_khoan">BHYT</field>
+            <field name="loai_tai_khoan">no_phai_tra</field>
+            <field name="nhom_tai_khoan">phai_tra</field>
+            <field name="tinh_chat">co</field>
+            <field name="parent_id" ref="tk_338"/>
+        </record>
+        <record id="tk_3386" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">3386</field>
+            <field name="ten_tai_khoan">BHTN</field>
+            <field name="loai_tai_khoan">no_phai_tra</field>
+            <field name="nhom_tai_khoan">phai_tra</field>
+            <field name="tinh_chat">co</field>
+            <field name="parent_id" ref="tk_338"/>
+        </record>
+        
+        <!-- TK 333 - Thuế và các khoản phải nộp Nhà nước -->
+        <record id="tk_333" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">333</field>
+            <field name="ten_tai_khoan">Thuế và các khoản phải nộp Nhà nước</field>
+            <field name="loai_tai_khoan">no_phai_tra</field>
+            <field name="nhom_tai_khoan">phai_tra</field>
+            <field name="tinh_chat">co</field>
+            <field name="la_tai_khoan_tong_hop">True</field>
+            <field name="cho_phep_ghi_so">False</field>
+        </record>
+        <record id="tk_3331" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">3331</field>
+            <field name="ten_tai_khoan">Thuế GTGT phải nộp</field>
+            <field name="loai_tai_khoan">no_phai_tra</field>
+            <field name="nhom_tai_khoan">phai_tra</field>
+            <field name="tinh_chat">co</field>
+            <field name="parent_id" ref="tk_333"/>
+        </record>
+        
+        <!-- LOẠI 4: VỐN CHỦ SỞ HỮU -->
+        <record id="tk_411" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">411</field>
+            <field name="ten_tai_khoan">Vốn đầu tư của chủ sở hữu</field>
+            <field name="loai_tai_khoan">von_chu_so_huu</field>
+            <field name="nhom_tai_khoan">von</field>
+            <field name="tinh_chat">co</field>
+        </record>
+        
+        <!-- LOẠI 5: DOANH THU -->
+        <record id="tk_511" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">511</field>
+            <field name="ten_tai_khoan">Doanh thu bán hàng và cung cấp dịch vụ</field>
+            <field name="loai_tai_khoan">doanh_thu</field>
+            <field name="nhom_tai_khoan">doanh_thu_ban_hang</field>
+            <field name="tinh_chat">co</field>
+        </record>
+        <record id="tk_711" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">711</field>
+            <field name="ten_tai_khoan">Thu nhập khác</field>
+            <field name="loai_tai_khoan">doanh_thu</field>
+            <field name="nhom_tai_khoan">doanh_thu_khac</field>
+            <field name="tinh_chat">co</field>
+        </record>
+        
+        <!-- LOẠI 6: CHI PHÍ -->
+        <!-- TK 622 - Chi phí nhân công trực tiếp -->
+        <record id="tk_622" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">622</field>
+            <field name="ten_tai_khoan">Chi phí nhân công trực tiếp</field>
+            <field name="loai_tai_khoan">chi_phi</field>
+            <field name="nhom_tai_khoan">chi_phi_nhan_su</field>
+            <field name="tinh_chat">no</field>
+        </record>
+        
+        <!-- TK 627 - Chi phí sản xuất chung -->
+        <record id="tk_627" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">627</field>
+            <field name="ten_tai_khoan">Chi phí sản xuất chung</field>
+            <field name="loai_tai_khoan">chi_phi</field>
+            <field name="nhom_tai_khoan">chi_phi_khau_hao</field>
+            <field name="tinh_chat">no</field>
+            <field name="la_tai_khoan_tong_hop">True</field>
+            <field name="cho_phep_ghi_so">False</field>
+        </record>
+        <record id="tk_6274" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">6274</field>
+            <field name="ten_tai_khoan">Chi phí khấu hao TSCĐ</field>
+            <field name="loai_tai_khoan">chi_phi</field>
+            <field name="nhom_tai_khoan">chi_phi_khau_hao</field>
+            <field name="tinh_chat">no</field>
+            <field name="parent_id" ref="tk_627"/>
+        </record>
+        
+        <!-- TK 641 - Chi phí bán hàng -->
+        <record id="tk_641" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">641</field>
+            <field name="ten_tai_khoan">Chi phí bán hàng</field>
+            <field name="loai_tai_khoan">chi_phi</field>
+            <field name="nhom_tai_khoan">chi_phi_ban_hang</field>
+            <field name="tinh_chat">no</field>
+            <field name="la_tai_khoan_tong_hop">True</field>
+            <field name="cho_phep_ghi_so">False</field>
+        </record>
+        <record id="tk_6414" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">6414</field>
+            <field name="ten_tai_khoan">Chi phí khấu hao TSCĐ</field>
+            <field name="loai_tai_khoan">chi_phi</field>
+            <field name="nhom_tai_khoan">chi_phi_khau_hao</field>
+            <field name="tinh_chat">no</field>
+            <field name="parent_id" ref="tk_641"/>
+        </record>
+        
+        <!-- TK 642 - Chi phí quản lý doanh nghiệp -->
+        <record id="tk_642" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">642</field>
+            <field name="ten_tai_khoan">Chi phí quản lý doanh nghiệp</field>
+            <field name="loai_tai_khoan">chi_phi</field>
+            <field name="nhom_tai_khoan">chi_phi_quan_ly</field>
+            <field name="tinh_chat">no</field>
+            <field name="la_tai_khoan_tong_hop">True</field>
+            <field name="cho_phep_ghi_so">False</field>
+        </record>
+        <record id="tk_6421" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">6421</field>
+            <field name="ten_tai_khoan">Chi phí nhân viên quản lý</field>
+            <field name="loai_tai_khoan">chi_phi</field>
+            <field name="nhom_tai_khoan">chi_phi_nhan_su</field>
+            <field name="tinh_chat">no</field>
+            <field name="parent_id" ref="tk_642"/>
+        </record>
+        <record id="tk_6424" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">6424</field>
+            <field name="ten_tai_khoan">Chi phí khấu hao TSCĐ</field>
+            <field name="loai_tai_khoan">chi_phi</field>
+            <field name="nhom_tai_khoan">chi_phi_khau_hao</field>
+            <field name="tinh_chat">no</field>
+            <field name="parent_id" ref="tk_642"/>
+        </record>
+        
+        <!-- TK 632 - Giá vốn hàng bán -->
+        <record id="tk_632" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">632</field>
+            <field name="ten_tai_khoan">Giá vốn hàng bán</field>
+            <field name="loai_tai_khoan">chi_phi</field>
+            <field name="nhom_tai_khoan">gia_von</field>
+            <field name="tinh_chat">no</field>
+        </record>
+        
+        <!-- TK 811 - Chi phí khác -->
+        <record id="tk_811" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">811</field>
+            <field name="ten_tai_khoan">Chi phí khác</field>
+            <field name="loai_tai_khoan">chi_phi</field>
+            <field name="nhom_tai_khoan">chi_phi_khac</field>
+            <field name="tinh_chat">no</field>
+        </record>
+    </data>
+</odoo>

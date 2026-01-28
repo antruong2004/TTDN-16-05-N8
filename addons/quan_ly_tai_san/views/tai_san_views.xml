@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tai_san_tree" model="ir.ui.view">
+        <field name="name">tai.san.tree</field>
+        <field name="model">tai_san</field>
+        <field name="arch" type="xml">
+            <tree string="Tài sản" decoration-success="trang_thai=='dang_su_dung'" decoration-danger="trang_thai=='hong'" decoration-muted="trang_thai=='thanh_ly'">
+                <field name="ma_tai_san"/>
+                <field name="ten_tai_san"/>
+                <field name="danh_muc_id"/>
+                <field name="gia_tri_ban_dau"/>
+                <field name="gia_tri_con_lai"/>
+                <field name="ty_le_khau_hao_hien_tai" widget="progressbar"/>
+                <field name="phong_ban_id"/>
+                <field name="nguoi_quan_ly_id"/>
+                <field name="trang_thai"/>
+                <field name="muc_do_su_dung"/>
+                <field name="con_bao_hanh"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_tai_san_form" model="ir.ui.view">
+        <field name="name">tai.san.form</field>
+        <field name="model">tai_san</field>
+        <field name="arch" type="xml">
+            <form string="Tài sản">
+                <header>
+                    <button name="action_bat_dau_su_dung" type="object" string="Bắt đầu sử dụng"
+                            class="btn-primary" attrs="{'invisible': [('trang_thai', '!=', 'moi')]}"/>
+                    <button name="action_bao_tri" type="object" string="Bảo trì"
+                            class="btn-warning" attrs="{'invisible': [('trang_thai', 'not in', ['dang_su_dung', 'hong'])]}"/>
+                    <button name="action_sua_chua_xong" type="object" string="Sửa chữa xong"
+                            class="btn-success" attrs="{'invisible': [('trang_thai', '!=', 'bao_tri')]}"/>
+                    <button name="action_hong" type="object" string="Báo hỏng"
+                            class="btn-danger" attrs="{'invisible': [('trang_thai', 'not in', ['dang_su_dung', 'bao_tri'])]}"/>
+                    <field name="trang_thai" widget="statusbar" statusbar_visible="moi,dang_su_dung,bao_tri,thanh_ly"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ten_tai_san" placeholder="Tên tài sản..."/>
+                        </h1>
+                        <h3>
+                            <field name="ma_tai_san" readonly="1"/>
+                        </h3>
+                    </div>
+                    <group>
+                        <group string="Thông tin chung">
+                            <field name="danh_muc_id"/>
+                            <field name="serial_number"/>
+                            <field name="model"/>
+                            <field name="xuat_xu"/>
+                            <field name="nam_san_xuat"/>
+                        </group>
+                        <group string="Thông tin tài chính">
+                            <field name="gia_tri_ban_dau" widget="monetary"/>
+                            <field name="gia_tri_con_lai" widget="monetary"/>
+                            <field name="tong_khau_hao" widget="monetary"/>
+                            <field name="ty_le_khau_hao_hien_tai" widget="percentage"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Mua sắm">
+                            <field name="ngay_mua"/>
+                            <field name="ngay_bat_dau_su_dung"/>
+                            <field name="noi_mua"/>
+                            <field name="nha_cung_cap"/>
+                            <field name="so_hoa_don"/>
+                        </group>
+                        <group string="Khấu hao">
+                            <field name="phuong_phap_khau_hao"/>
+                            <field name="thoi_gian_su_dung"/>
+                            <field name="ty_le_khau_hao"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Quản lý">
+                            <field name="phong_ban_id"/>
+                            <field name="nguoi_quan_ly_id"/>
+                            <field name="vi_tri"/>
+                            <field name="muc_do_su_dung"/>
+                        </group>
+                        <group string="Bảo hành">
+                            <field name="thoi_gian_bao_hanh"/>
+                            <field name="ngay_het_bao_hanh"/>
+                            <field name="con_bao_hanh" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Thông tin sử dụng">
+                            <field name="tuoi_tai_san"/>
+                            <field name="so_ngay_su_dung"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lịch sử khấu hao">
+                            <field name="khau_hao_ids">
+                                <tree>
+                                    <field name="ma_khau_hao"/>
+                                    <field name="ngay_khau_hao"/>
+                                    <field name="thang_khau_hao"/>
+                                    <field name="nam_khau_hao"/>
+                                    <field name="gia_tri_khau_hao"/>
+                                    <field name="gia_tri_con_lai"/>
+                                    <field name="trang_thai"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Mô tả &amp; Ghi chú">
+                            <group>
+                                <field name="mo_ta" nolabel="1" placeholder="Mô tả chi tiết về tài sản..."/>
+                                <field name="ghi_chu" nolabel="1" placeholder="Ghi chú thêm..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tai_san_search" model="ir.ui.view">
+        <field name="name">tai.san.search</field>
+        <field name="model">tai_san</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm tài sản">
+                <field name="ten_tai_san"/>
+                <field name="ma_tai_san"/>
+                <field name="serial_number"/>
+                <field name="danh_muc_id"/>
+                <field name="phong_ban_id"/>
+                <field name="nguoi_quan_ly_id"/>
+                <filter string="Đang sử dụng" name="dang_su_dung" domain="[('trang_thai','=','dang_su_dung')]"/>
+                <filter string="Còn bảo hành" name="con_bao_hanh" domain="[('con_bao_hanh','=',True)]"/>
+                <filter string="Tình trạng tốt" name="tinh_trang_tot" domain="[('muc_do_su_dung','=','tot')]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Danh mục" name="group_danh_muc" context="{'group_by':'danh_muc_id'}"/>
+                    <filter string="Phòng ban" name="group_phong_ban" context="{'group_by':'phong_ban_id'}"/>
+                    <filter string="Trạng thái" name="group_trang_thai" context="{'group_by':'trang_thai'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_tai_san" model="ir.actions.act_window">
+        <field name="name">Tài sản</field>
+        <field name="res_model">tai_san</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_dang_su_dung': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo tài sản mới
+            </p>
+            <p>
+                Quản lý tài sản cố định của doanh nghiệp
+            </p>
+        </field>
+    </record>
+
+</odoo>

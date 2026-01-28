@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_quan_ly_tai_san_root"
+              name="Quản Lý Tài Sản"
+              sequence="10"
+              web_icon="quan_ly_tai_san,static/description/icon.png"/>
+
+    <!-- Dashboard Menu - ĐẶT ĐẦU TIÊN -->
+    <menuitem id="menu_dashboard"
+              name="📊 Dashboard"
+              parent="menu_quan_ly_tai_san_root"
+              action="action_tai_san_dashboard"
+              sequence="1"/>
+
+    <!-- Báo cáo & Thống kê Menu -->
+    <menuitem id="menu_bao_cao"
+              name="📈 Báo cáo"
+              parent="menu_quan_ly_tai_san_root"
+              sequence="5"/>
+
+    <!-- Temporary commented - Actions not yet defined
+    <menuitem id="menu_thong_ke_theo_loai"
+              name="Thống kê theo danh mục"
+              parent="menu_bao_cao"
+              action="action_thong_ke_theo_loai"
+              sequence="10"/>
+
+    <menuitem id="menu_thong_ke_theo_phong_ban"
+              name="Thống kê theo phòng ban"
+              parent="menu_bao_cao"
+              action="action_thong_ke_theo_phong_ban"
+              sequence="20"/>
+
+    <menuitem id="menu_thong_ke_theo_trang_thai"
+              name="Thống kê theo trạng thái"
+              parent="menu_bao_cao"
+              action="action_thong_ke_theo_trang_thai"
+              sequence="30"/>
+    -->
+
+    <!-- Danh mục Menu -->
+    <menuitem id="menu_danh_muc"
+              name="Danh mục"
+              parent="menu_quan_ly_tai_san_root"
+              sequence="10"/>
+
+    <menuitem id="menu_danh_muc_tai_san"
+              name="Danh mục tài sản"
+              parent="menu_danh_muc"
+              action="action_danh_muc_tai_san"
+              sequence="10"/>
+
+    <!-- Tài sản Menu -->
+    <menuitem id="menu_tai_san"
+              name="Tài sản"
+              parent="menu_quan_ly_tai_san_root"
+              sequence="20"/>
+
+    <menuitem id="menu_danh_sach_tai_san"
+              name="Danh sách tài sản"
+              parent="menu_tai_san"
+              action="action_tai_san"
+              sequence="10"/>
+
+    <menuitem id="menu_phan_bo_tai_san"
+              name="Phân bổ tài sản"
+              parent="menu_tai_san"
+              action="action_phan_bo_tai_san"
+              sequence="20"/>
+
+    <menuitem id="menu_bao_tri"
+              name="Bảo trì tài sản"
+              parent="menu_tai_san"
+              action="action_lich_su_bao_tri"
+              sequence="30"/>
+
+    <!-- Khấu hao Menu -->
+    <menuitem id="menu_khau_hao"
+              name="Khấu hao"
+              parent="menu_quan_ly_tai_san_root"
+              sequence="30"/>
+
+    <menuitem id="menu_khau_hao_tai_san"
+              name="Khấu hao tài sản"
+              parent="menu_khau_hao"
+              action="action_khau_hao"
+              sequence="10"/>
+
+    <!-- Quản lý Menu -->
+    <menuitem id="menu_quan_ly"
+              name="Quản lý"
+              parent="menu_quan_ly_tai_san_root"
+              sequence="40"/>
+
+    <menuitem id="menu_muon_tra"
+              name="Mượn/Trả tài sản"
+              parent="menu_quan_ly"
+              action="action_muon_tra_tai_san"
+              sequence="10"/>
+
+    <menuitem id="menu_thanh_ly"
+              name="Thanh lý"
+              parent="menu_quan_ly"
+              action="action_thanh_ly_tai_san"
+              sequence="20"/>
+
+    <menuitem id="menu_kiem_ke"
+              name="Kiểm kê"
+              parent="menu_quan_ly"
+              action="action_kiem_ke_tai_san"
+              sequence="30"/>
+
+    <menuitem id="menu_luan_chuyen"
+              name="Luân chuyển"
+              parent="menu_quan_ly"
+              action="action_luan_chuyen_tai_san"
+              sequence="40"/>
+
+</odoo>

@@ -51,3 +51,13 @@ package.json
 /src/
 /venv/
 /venv_15_01/
+
+# Unused/archived files and folders
+_deleted/
+_archive/
+odoo_start.log
+upgrade.log
+odoo.log
+cleanup.sh
+cleanup.ps1
+tao_but_toan_khau_hao.py

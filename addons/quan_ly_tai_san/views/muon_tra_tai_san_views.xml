@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_muon_tra_tai_san_tree" model="ir.ui.view">
+        <field name="name">muon.tra.tai.san.tree</field>
+        <field name="model">muon_tra_tai_san</field>
+        <field name="arch" type="xml">
+            <tree string="Mượn trả tài sản" decoration-success="trang_thai=='da_tra'"
+                  decoration-info="trang_thai=='dang_muon'" decoration-warning="trang_thai=='cho_duyet'"
+                  decoration-danger="trang_thai=='tu_choi'" decoration-muted="trang_thai=='nhap'">
+                <field name="ma_phieu"/>
+                <field name="nhan_vien_id"/>
+                <field name="ngay_muon"/>
+                <field name="ngay_tra_du_kien"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_muon_tra_tai_san_form" model="ir.ui.view">
+        <field name="name">muon.tra.tai.san.form</field>
+        <field name="model">muon_tra_tai_san</field>
+        <field name="arch" type="xml">
+            <form string="Mượn trả tài sản">
+                <header>
+                    <button name="action_gui_duyet" type="object" string="Gửi duyệt"
+                            class="btn-primary" attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}"/>
+                    <button name="action_duyet" type="object" string="Duyệt"
+                            class="btn-success" attrs="{'invisible': [('trang_thai', '!=', 'cho_duyet')]}"/>
+                    <button name="action_tu_choi" type="object" string="Từ chối"
+                            class="btn-danger" attrs="{'invisible': [('trang_thai', '!=', 'cho_duyet')]}" confirm="Bạn có chắc chắn muốn từ chối?"/>
+                    <button name="action_bat_dau_muon" type="object" string="Bắt đầu mượn"
+                            class="btn-info" attrs="{'invisible': [('trang_thai', '!=', 'da_duyet')]}"/>
+                    <button name="action_tra_tai_san" type="object" string="Trả tài sản"
+                            class="btn-warning" attrs="{'invisible': [('trang_thai', '!=', 'dang_muon')]}"/>
+                    <button name="action_nhap_lai" type="object" string="Về nháp"
+                            class="btn-secondary" attrs="{'invisible': [('trang_thai', 'not in', ['tu_choi'])]}"/>
+                    <field name="trang_thai" widget="statusbar" statusbar_visible="nhap,cho_duyet,da_duyet,dang_muon,da_tra"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ma_phieu" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="ma_phieu" invisible="1"/>
+                        <field name="nhan_vien_id"/>
+                        <field name="ngay_muon"/>
+                        <field name="ngay_tra_du_kien"/>
+                        <field name="ngay_tra_thuc_te"/>
+                        <field name="trang_thai"/>
+                    </group>
+                    <group>
+                        <field name="ly_do"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_muon_tra_tai_san" model="ir.actions.act_window">
+        <field name="name">Mượn trả tài sản</field>
+        <field name="res_model">muon_tra_tai_san</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+<<<<<<< HEAD
 
         <menuitem
             id="menu_root"
@@ -56,5 +57,61 @@
             sequence="7"
             action="action_bang_luong"/>
 
+=======
+        <!-- Root Menu -->
+        <menuitem id="menu_root"
+                  name="Quản Lý Nhân Sự"
+                  sequence="5"/>
+        
+        <!-- Danh mục Menu -->
+        <menuitem id="menu_danh_muc"
+                  name="Danh mục"
+                  parent="menu_root"
+                  sequence="10"/>
+        
+        <menuitem id="menu_phong_ban"
+                  name="Phòng ban"
+                  parent="menu_danh_muc"
+                  action="action_phong_ban"
+                  sequence="10"/>
+        
+        <menuitem id="menu_chuc_vu"
+                  name="Chức vụ"
+                  parent="menu_danh_muc"
+                  action="action_chuc_vu"
+                  sequence="20"/>
+        
+        <!-- Nhân viên Menu -->
+        <menuitem id="menu_nhan_vien"
+                  name="Nhân viên"
+                  parent="menu_root"
+                  action="action_nhan_vien"
+                  sequence="20"/>
+        
+        <!-- Chấm công Menu -->
+        <menuitem id="menu_cham_cong_root"
+                  name="Chấm công"
+                  parent="menu_root"
+                  sequence="30"/>
+        
+        <menuitem id="menu_cham_cong"
+                  name="Chấm công hàng ngày"
+                  parent="menu_cham_cong_root"
+                  action="action_cham_cong"
+                  sequence="10"/>
+        
+        <menuitem id="menu_bao_cao_cham_cong"
+                  name="Báo cáo chấm công tháng"
+                  parent="menu_cham_cong_root"
+                  action="action_bao_cao_cham_cong"
+                  sequence="20"/>
+        
+        <!-- Bảng lương Menu -->
+        <menuitem id="menu_bang_luong"
+                  name="Bảng lương"
+                  parent="menu_root"
+                  action="action_bang_luong"
+                  sequence="40"/>
+>>>>>>> cc63fe88 (update)
     </data>
 </odoo>
