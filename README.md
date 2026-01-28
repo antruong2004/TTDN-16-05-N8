@@ -1,4 +1,5 @@
----
+# Module Quản Lý Tài Sản – Odoo (odoo-fitdnu)
+
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 ![GitLab](https://img.shields.io/badge/gitlab-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
@@ -6,66 +7,99 @@
 ![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
 [![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 
+---
 
+## 1. Giới thiệu
 
+**Module Quản Lý Tài Sản (odoo-fitdnu)** là module mở rộng được phát triển trên nền tảng **Odoo 15**, nhằm cung cấp giải pháp **quản lý tài sản toàn diện cho doanh nghiệp**, đặc biệt phù hợp với các doanh nghiệp vừa và nhỏ (SME).
 
-# 1. Cài đặt công cụ, môi trường và các thư viện cần thiết
+Module này được **nâng cấp và mở rộng** từ đề tài **TTDN-15-04-N6**, bổ sung thêm nhiều nghiệp vụ thực tế, tích hợp sâu với **kế toán và nhân sự**, đồng thời cải tiến kiến trúc và giao diện.
 
-## 1.1. Clone project.
-git clone https://github.com/antruong2004/TTDN-16-05-N8
-git checkout 
-## 1.2. cài đặt các thư viện cần thiết
+---
 
-Người sử dụng thực thi các lệnh sau đề cài đặt các thư viện cần thiết
+## 2. Phạm vi và chức năng chính
 
-```
-sudo apt-get install libxml2-dev libxslt-dev libldap2-dev libsasl2-dev libssl-dev python3.10-distutils python3.10-dev build-essential libssl-dev libffi-dev zlib1g-dev python3.10-venv libpq-dev
-```
-## 1.3. khởi tạo môi trường ảo.
+Module hỗ trợ quản lý toàn bộ vòng đời của tài sản, bao gồm:
 
-`python3.10 -m venv ./venv`
-Thay đổi trình thông dịch sang môi trường ảo và chạy requirements.txt để cài đặt tiếp các thư viện được yêu cầu
+- Dashboard tổng quan tài sản và tình hình mượn trả
+- Quản lý loại tài sản
+- Quản lý tài sản cụ thể
+- Phân bổ tài sản cho phòng ban / nhân viên
+- Tính khấu hao tài sản tự động
+- Kiểm kê tài sản định kỳ
+- Luân chuyển tài sản
+- Thanh lý tài sản
+- Quản lý đơn mượn – trả và cấp phát tài sản
 
-```
-source venv/bin/activate
-pip3 install -r requirements.txt
-```
+### Một số giao diện tiêu biểu
 
-# 2. Setup database
+- Dashboard tổng quan  
+- Quản lý mượn trả tài sản  
+- Quản lý loại tài sản  
+- Tài sản cụ thể  
+- Phân bổ – luân chuyển – thanh lý  
+- Kiểm kê và khấu hao tài sản  
 
-Khởi tạo database trên docker bằng việc thực thi file dockercompose.yml.
+(Các hình ảnh minh họa được lưu trong thư mục `images/`)
 
-`docker-compose up -d`
+---
 
-# 3. Setup tham số chạy cho hệ thống
+## 3. Điểm nổi bật của module
 
-## 3.1. Khởi tạo odoo.conf
+- Quản lý tài sản theo **quy trình nghiệp vụ thực tế**
+- Tính khấu hao tự động theo nhiều phương pháp
+- Theo dõi lịch sử sử dụng, bảo trì và luân chuyển
+- Dashboard trực quan, hỗ trợ ra quyết định nhanh
+- Workflow rõ ràng, phân trạng thái nghiệp vụ
+- Dễ mở rộng và tích hợp thêm module khác
 
-Tạo tệp **odoo.conf** có nội dung như sau:
+---
 
-```
-[options]
-addons_path = addons
-db_host = localhost
-db_password = odoo
-db_user = odoo
-db_port = 5432
-xmlrpc_port = 8069
-```
-Có thể kế thừa từ **odoo.conf.template**
+## 4. Nâng cấp so với đề tài TTDN-15-04-N6
 
-Ngoài ra có thể thêm mổ số parameters như:
+So với phiên bản gốc **TTDN-15-04-N6**, module đã được nâng cấp và cải tiến đáng kể:
 
-```
--c _<đường dẫn đến tệp odoo.conf>_
--u _<tên addons>_ giúp cập nhật addons đó trước khi khởi chạy
--d _<tên database>_ giúp chỉ rõ tên database được sử dụng
---dev=all giúp bật chế độ nhà phát triển 
-```
+- ✅ **Bổ sung module kế toán tài sản**
+  - Tự động tạo bút toán khấu hao
+  - Quản lý tài khoản tài sản và chi phí
 
-# 4. Chạy hệ thống và cài đặt các ứng dụng cần thiết
+- ✅ **Mở rộng nghiệp vụ tài sản**
+  - Lịch sử bảo trì tài sản
+  - Chi tiết kiểm kê và xử lý chênh lệch
+  - Phân bổ và luân chuyển nâng cao
 
-Người sử dụng truy cập theo đường dẫn _http://localhost:8069/_ để đăng nhập vào hệ thống.
+- ✅ **Khấu hao tự động**
+  - Hỗ trợ nhiều phương pháp khấu hao
+  - Tính toán định kỳ theo tháng
 
-Hoàn tất
-    
+- ✅ **Tích hợp nhân sự**
+  - Gắn tài sản với phòng ban và nhân viên
+  - Quản lý mượn/trả theo người dùng
+
+- ✅ **Cải tiến giao diện & Dashboard**
+  - Dashboard tổng quan trực quan
+  - Biểu đồ và thống kê nhanh
+
+- ✅ **Tài liệu và hướng dẫn**
+  - README chi tiết
+  - Hướng dẫn cài đặt và sử dụng
+
+---
+
+## 5. Yêu cầu hệ thống
+
+- Ubuntu 20.04+
+- Python 3.8+
+- PostgreSQL
+- Docker & Docker Compose
+- Odoo 15
+
+---
+
+## 6. Cài đặt và chạy hệ thống
+
+### 6.1. Clone project
+
+```bash
+git clone https://github.com/antruong2004/TTDN-16-05-N8.git
+cd TTDN-16-05-N8
